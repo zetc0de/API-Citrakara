@@ -1,0 +1,572 @@
+Started GET "/" for 127.0.0.1 at 2018-05-17 21:16:29 +0700
+Processing by Rails::WelcomeController#index as HTML
+  Rendering /home/rio/.rvm/gems/ruby-2.4.1/gems/railties-5.2.0/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /home/rio/.rvm/gems/ruby-2.4.1/gems/railties-5.2.0/lib/rails/templates/rails/welcome/index.html.erb (9.8ms)
+Completed 200 OK in 40ms (Views: 32.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/favicon.ico" for 127.0.0.1 at 2018-05-17 21:16:30 +0700
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+actionpack (5.2.0) lib/action_dispatch/middleware/debug_exceptions.rb:65:in `call'
+actionpack (5.2.0) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (5.2.0) lib/rails/rack/logger.rb:38:in `call_app'
+railties (5.2.0) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (5.2.0) lib/active_support/tagged_logging.rb:71:in `block in tagged'
+activesupport (5.2.0) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (5.2.0) lib/active_support/tagged_logging.rb:71:in `tagged'
+railties (5.2.0) lib/rails/rack/logger.rb:26:in `call'
+actionpack (5.2.0) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (5.2.0) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.0.5) lib/rack/runtime.rb:22:in `call'
+activesupport (5.2.0) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (5.2.0) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (5.2.0) lib/action_dispatch/middleware/static.rb:127:in `call'
+rack (2.0.5) lib/rack/sendfile.rb:111:in `call'
+railties (5.2.0) lib/rails/engine.rb:524:in `call'
+puma (3.11.4) lib/puma/configuration.rb:225:in `call'
+puma (3.11.4) lib/puma/server.rb:632:in `handle_request'
+puma (3.11.4) lib/puma/server.rb:446:in `process_client'
+puma (3.11.4) lib/puma/server.rb:306:in `block in run'
+puma (3.11.4) lib/puma/thread_pool.rb:120:in `block in spawn_thread'
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_try_advisory_lock(4490508744379348215)[0m
+  ↳ bin/rails:4
+  [1m[35m (59.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:4
+Migrating to CreateLukisans (20180517142346)
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ bin/rails:4
+  [1m[35m (260.6ms)[0m  [1m[35mCREATE TABLE "lukisans" ("id" bigserial primary key, "title" character varying, "description" text, "imagepath" character varying, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  ↳ db/migrate/20180517142346_create_lukisans.rb:3
+  [1m[36mActiveRecord::SchemaMigration Create (0.4ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20180517142346"]]
+  ↳ bin/rails:4
+  [1m[35m (16.2ms)[0m  [1m[35mCOMMIT[0m
+  ↳ bin/rails:4
+  [1m[36mActiveRecord::InternalMetadata Load (25.7ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  ↳ bin/rails:4
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ bin/rails:4
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  ↳ bin/rails:4
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_advisory_unlock(4490508744379348215)[0m
+  ↳ bin/rails:4
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:4
+Started GET "/" for 127.0.0.1 at 2018-05-17 21:25:10 +0700
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /home/rio/.rvm/gems/ruby-2.4.1/gems/activerecord-5.2.0/lib/active_record/log_subscriber.rb:98
+Processing by Rails::WelcomeController#index as HTML
+  Rendering /home/rio/.rvm/gems/ruby-2.4.1/gems/railties-5.2.0/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /home/rio/.rvm/gems/ruby-2.4.1/gems/railties-5.2.0/lib/rails/templates/rails/welcome/index.html.erb (2.8ms)
+Completed 200 OK in 7ms (Views: 6.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/lukisans" for 127.0.0.1 at 2018-05-17 21:25:15 +0700
+Processing by LukisansController#index as HTML
+  [1m[36mLukisan Load (0.6ms)[0m  [1m[34mSELECT "lukisans".* FROM "lukisans"[0m
+  ↳ app/controllers/lukisans_controller.rb:8
+Completed 200 OK in 11ms (Views: 2.1ms | ActiveRecord: 3.5ms)
+
+
+Started GET "/lukisans/1" for 127.0.0.1 at 2018-05-17 21:25:20 +0700
+Processing by LukisansController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mLukisan Load (0.2ms)[0m  [1m[34mSELECT  "lukisans".* FROM "lukisans" WHERE "lukisans"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/lukisans_controller.rb:44
+Completed 404 Not Found in 8ms (ActiveRecord: 4.4ms)
+
+
+  
+ActiveRecord::RecordNotFound (Couldn't find Lukisan with 'id'=1):
+  
+app/controllers/lukisans_controller.rb:44:in `set_lukisan'
+Started POST "/lukisans?imagepath=anu.jpg&title=art%20keren&description=ini%20lukisan%20keren%20sekali" for 127.0.0.1 at 2018-05-17 21:31:30 +0700
+Processing by LukisansController#create as */*
+  Parameters: {"imagepath"=>"anu.jpg", "title"=>"art keren", "description"=>"ini lukisan keren sekali"}
+Completed 400 Bad Request in 0ms (ActiveRecord: 0.0ms)
+
+
+  
+ActionController::ParameterMissing (param is missing or the value is empty: lukisan):
+  
+app/controllers/lukisans_controller.rb:49:in `lukisan_params'
+app/controllers/lukisans_controller.rb:18:in `create'
+Started POST "/lukisans?imagepath=anu.jpg&title=art%20keren&description=ini%20lukisan%20keren%20sekali" for 127.0.0.1 at 2018-05-17 21:34:08 +0700
+Processing by LukisansController#create as */*
+  Parameters: {"imagepath"=>"anu.jpg", "title"=>"art keren", "description"=>"ini lukisan keren sekali"}
+Completed 400 Bad Request in 0ms (ActiveRecord: 0.0ms)
+
+
+  
+ActionController::ParameterMissing (param is missing or the value is empty: lukisan):
+  
+app/controllers/lukisans_controller.rb:49:in `lukisan_params'
+app/controllers/lukisans_controller.rb:18:in `create'
+Started POST "/lukisans?imagepath=anu.jpg&title=art%20keren&description=ini%20lukisan%20keren%20sekali" for 127.0.0.1 at 2018-05-17 21:38:29 +0700
+Processing by LukisansController#create as */*
+  Parameters: {"imagepath"=>"anu.jpg", "title"=>"art keren", "description"=>"ini lukisan keren sekali"}
+Completed 400 Bad Request in 0ms (ActiveRecord: 0.0ms)
+
+
+  
+ActionController::ParameterMissing (param is missing or the value is empty: lukisan):
+  
+app/controllers/lukisans_controller.rb:49:in `lukisan_params'
+app/controllers/lukisans_controller.rb:18:in `create'
+Started POST "/artists" for 127.0.0.1 at 2018-05-17 21:41:13 +0700
+  
+ActionController::RoutingError (No route matches [POST] "/artists"):
+  
+actionpack (5.2.0) lib/action_dispatch/middleware/debug_exceptions.rb:65:in `call'
+actionpack (5.2.0) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (5.2.0) lib/rails/rack/logger.rb:38:in `call_app'
+railties (5.2.0) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (5.2.0) lib/active_support/tagged_logging.rb:71:in `block in tagged'
+activesupport (5.2.0) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (5.2.0) lib/active_support/tagged_logging.rb:71:in `tagged'
+railties (5.2.0) lib/rails/rack/logger.rb:26:in `call'
+actionpack (5.2.0) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (5.2.0) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.0.5) lib/rack/runtime.rb:22:in `call'
+activesupport (5.2.0) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (5.2.0) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (5.2.0) lib/action_dispatch/middleware/static.rb:127:in `call'
+rack (2.0.5) lib/rack/sendfile.rb:111:in `call'
+railties (5.2.0) lib/rails/engine.rb:524:in `call'
+puma (3.11.4) lib/puma/configuration.rb:225:in `call'
+puma (3.11.4) lib/puma/server.rb:632:in `handle_request'
+puma (3.11.4) lib/puma/server.rb:446:in `process_client'
+puma (3.11.4) lib/puma/server.rb:306:in `block in run'
+puma (3.11.4) lib/puma/thread_pool.rb:120:in `block in spawn_thread'
+Started POST "/lukisans" for 127.0.0.1 at 2018-05-17 21:42:49 +0700
+Processing by LukisansController#create as JSON
+  Parameters: {"title"=>"art keren", "description"=>"ini keren banget sumpah", "imagepath"=>"anu.com/anu.jpg", "lukisan"=>{"title"=>"art keren", "description"=>"ini keren banget sumpah", "imagepath"=>"anu.com/anu.jpg"}}
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/lukisans_controller.rb:20
+  [1m[36mLukisan Create (105.0ms)[0m  [1m[32mINSERT INTO "lukisans" ("title", "description", "imagepath", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["title", "art keren"], ["description", "ini keren banget sumpah"], ["imagepath", "anu.com/anu.jpg"], ["created_at", "2018-05-17 14:42:49.032217"], ["updated_at", "2018-05-17 14:42:49.032217"]]
+  ↳ app/controllers/lukisans_controller.rb:20
+  [1m[35m (16.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/lukisans_controller.rb:20
+Completed 201 Created in 138ms (Views: 1.0ms | ActiveRecord: 122.5ms)
+
+
+Started POST "/lukisans?title=art%20keren&description=ini%20lukisan%20keren%20sekali&imagepath=anu.com/anu.jpg" for 127.0.0.1 at 2018-05-17 21:43:52 +0700
+Processing by LukisansController#create as */*
+  Parameters: {"title"=>"art keren", "description"=>"ini lukisan keren sekali", "imagepath"=>"anu.com/anu.jpg"}
+Completed 400 Bad Request in 1ms (ActiveRecord: 0.0ms)
+
+
+  
+ActionController::ParameterMissing (param is missing or the value is empty: lukisan):
+  
+app/controllers/lukisans_controller.rb:49:in `lukisan_params'
+app/controllers/lukisans_controller.rb:18:in `create'
+Started POST "/lukisans?title=%27art%20keren%27&description=%27ini%20lukisan%20keren%20sekali%27&imagepath=%27anu.com/anu.jpg%27" for 127.0.0.1 at 2018-05-17 21:44:08 +0700
+Processing by LukisansController#create as */*
+  Parameters: {"title"=>"'art keren'", "description"=>"'ini lukisan keren sekali'", "imagepath"=>"'anu.com/anu.jpg'"}
+Completed 400 Bad Request in 0ms (ActiveRecord: 0.0ms)
+
+
+  
+ActionController::ParameterMissing (param is missing or the value is empty: lukisan):
+  
+app/controllers/lukisans_controller.rb:49:in `lukisan_params'
+app/controllers/lukisans_controller.rb:18:in `create'
+Started POST "/lukisans?title=art%20keren&description=ini%20lukisan%20keren%20sekali&imagepath=anu.com/anu.jpg" for 127.0.0.1 at 2018-05-17 21:45:10 +0700
+Processing by LukisansController#create as */*
+  Parameters: {"title"=>"art keren", "description"=>"ini lukisan keren sekali", "imagepath"=>"anu.com/anu.jpg"}
+Completed 400 Bad Request in 0ms (ActiveRecord: 0.0ms)
+
+
+  
+ActionController::ParameterMissing (param is missing or the value is empty: lukisan):
+  
+app/controllers/lukisans_controller.rb:49:in `lukisan_params'
+app/controllers/lukisans_controller.rb:18:in `create'
+Started POST "/lukisans?title=art%20keren%20description=ini%20lukisan%20keren%20sekali%20imagepath=anu.com/anu.jpg" for 127.0.0.1 at 2018-05-17 21:45:46 +0700
+Processing by LukisansController#create as */*
+  Parameters: {"title"=>"art keren description=ini lukisan keren sekali imagepath=anu.com/anu.jpg"}
+Completed 400 Bad Request in 0ms (ActiveRecord: 0.0ms)
+
+
+  
+ActionController::ParameterMissing (param is missing or the value is empty: lukisan):
+  
+app/controllers/lukisans_controller.rb:49:in `lukisan_params'
+app/controllers/lukisans_controller.rb:18:in `create'
+Started POST "/lukisans?title=art%20keren&description=ini%20lukisan%20keren%20sekali&imagepath=anu.com/anu.jpg" for 127.0.0.1 at 2018-05-17 21:45:56 +0700
+Processing by LukisansController#create as */*
+  Parameters: {"title"=>"art keren", "description"=>"ini lukisan keren sekali", "imagepath"=>"anu.com/anu.jpg"}
+Completed 400 Bad Request in 0ms (ActiveRecord: 0.0ms)
+
+
+  
+ActionController::ParameterMissing (param is missing or the value is empty: lukisan):
+  
+app/controllers/lukisans_controller.rb:49:in `lukisan_params'
+app/controllers/lukisans_controller.rb:18:in `create'
+Started GET "/lukisans" for 127.0.0.1 at 2018-05-17 21:46:10 +0700
+Processing by LukisansController#index as */*
+  [1m[36mLukisan Load (0.4ms)[0m  [1m[34mSELECT "lukisans".* FROM "lukisans"[0m
+  ↳ app/controllers/lukisans_controller.rb:8
+Completed 200 OK in 177ms (Views: 176.5ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/lukisans/1" for 127.0.0.1 at 2018-05-17 21:46:15 +0700
+Processing by LukisansController#show as */*
+  Parameters: {"id"=>"1"}
+  [1m[36mLukisan Load (0.3ms)[0m  [1m[34mSELECT  "lukisans".* FROM "lukisans" WHERE "lukisans"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/lukisans_controller.rb:44
+Completed 200 OK in 3ms (Views: 0.5ms | ActiveRecord: 0.5ms)
+
+
+Started POST "/lukisans/?image=anu.jpg&title=art%20keren&description=ini%20lukisan%20keren%20sekali" for 127.0.0.1 at 2018-05-17 21:47:20 +0700
+Processing by LukisansController#create as */*
+  Parameters: {"image"=>"anu.jpg", "title"=>"art keren", "description"=>"ini lukisan keren sekali"}
+Completed 400 Bad Request in 0ms (ActiveRecord: 0.0ms)
+
+
+  
+ActionController::ParameterMissing (param is missing or the value is empty: lukisan):
+  
+app/controllers/lukisans_controller.rb:49:in `lukisan_params'
+app/controllers/lukisans_controller.rb:18:in `create'
+Started POST "/lukisans/?image=anu.jpg&title=art%20keren&description=ini%20lukisan%20keren%20sekali" for 127.0.0.1 at 2018-05-17 21:47:38 +0700
+Processing by LukisansController#create as */*
+  Parameters: {"image"=>"anu.jpg", "title"=>"art keren", "description"=>"ini lukisan keren sekali"}
+Completed 400 Bad Request in 0ms (ActiveRecord: 0.0ms)
+
+
+  
+ActionController::ParameterMissing (param is missing or the value is empty: lukisan):
+  
+app/controllers/lukisans_controller.rb:49:in `lukisan_params'
+app/controllers/lukisans_controller.rb:18:in `create'
+Started POST "/lukisans/?imagepath=anu.jpg&title=art%20keren&description=ini%20lukisan%20keren%20sekali" for 127.0.0.1 at 2018-05-17 21:48:43 +0700
+Processing by LukisansController#create as */*
+  Parameters: {"imagepath"=>"anu.jpg", "title"=>"art keren", "description"=>"ini lukisan keren sekali"}
+Completed 400 Bad Request in 0ms (ActiveRecord: 0.0ms)
+
+
+  
+ActionController::ParameterMissing (param is missing or the value is empty: lukisan):
+  
+app/controllers/lukisans_controller.rb:49:in `lukisan_params'
+app/controllers/lukisans_controller.rb:18:in `create'
+Started POST "/lukisans/?title=art%20keren&description=ini%20lukisan%20keren%20sekali&imagepath=anu.jpg" for 127.0.0.1 at 2018-05-17 21:52:21 +0700
+Processing by LukisansController#create as */*
+  Parameters: {"title"=>"art keren", "description"=>"ini lukisan keren sekali", "imagepath"=>"anu.jpg"}
+Completed 400 Bad Request in 0ms (ActiveRecord: 0.0ms)
+
+
+  
+ActionController::ParameterMissing (param is missing or the value is empty: lukisan):
+  
+app/controllers/lukisans_controller.rb:49:in `lukisan_params'
+app/controllers/lukisans_controller.rb:18:in `create'
+Started GET "/lukisans/?title=art%20banget&description=ini%20lukisan%20keren%20banget&imagepath=ani.com/anu.jpg" for 127.0.0.1 at 2018-05-17 21:53:39 +0700
+Processing by LukisansController#index as HTML
+  Parameters: {"title"=>"art banget", "description"=>"ini lukisan keren banget", "imagepath"=>"ani.com/anu.jpg"}
+  [1m[36mLukisan Load (0.4ms)[0m  [1m[34mSELECT "lukisans".* FROM "lukisans"[0m
+  ↳ app/controllers/lukisans_controller.rb:8
+Completed 200 OK in 2ms (Views: 1.5ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/lukisans/" for 127.0.0.1 at 2018-05-17 21:54:13 +0700
+Processing by LukisansController#index as HTML
+  [1m[36mLukisan Load (0.5ms)[0m  [1m[34mSELECT "lukisans".* FROM "lukisans"[0m
+  ↳ app/controllers/lukisans_controller.rb:8
+Completed 200 OK in 3ms (Views: 1.9ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/lukisans/2" for 127.0.0.1 at 2018-05-17 21:54:19 +0700
+Processing by LukisansController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mLukisan Load (0.5ms)[0m  [1m[34mSELECT  "lukisans".* FROM "lukisans" WHERE "lukisans"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/lukisans_controller.rb:44
+Completed 404 Not Found in 2ms (ActiveRecord: 0.5ms)
+
+
+  
+ActiveRecord::RecordNotFound (Couldn't find Lukisan with 'id'=2):
+  
+app/controllers/lukisans_controller.rb:44:in `set_lukisan'
+Started GET "/lukisans/1" for 127.0.0.1 at 2018-05-17 21:54:22 +0700
+Processing by LukisansController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mLukisan Load (0.4ms)[0m  [1m[34mSELECT  "lukisans".* FROM "lukisans" WHERE "lukisans"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/lukisans_controller.rb:44
+Completed 200 OK in 2ms (Views: 0.5ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/lukisans/?title=art%20banget&description=ini%20lukisan%20keren%20banget&imagepath=ani.com/anu.jpg" for 127.0.0.1 at 2018-05-17 21:54:33 +0700
+Processing by LukisansController#index as HTML
+  Parameters: {"title"=>"art banget", "description"=>"ini lukisan keren banget", "imagepath"=>"ani.com/anu.jpg"}
+  [1m[36mLukisan Load (0.3ms)[0m  [1m[34mSELECT "lukisans".* FROM "lukisans"[0m
+  ↳ app/controllers/lukisans_controller.rb:8
+Completed 200 OK in 2ms (Views: 1.2ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/lukisans/?title=art%20banget&description=ini%20lukisan%20keren%20banget&imagepath=ani.com/anu.jpg" for 127.0.0.1 at 2018-05-17 21:54:34 +0700
+Processing by LukisansController#index as HTML
+  Parameters: {"title"=>"art banget", "description"=>"ini lukisan keren banget", "imagepath"=>"ani.com/anu.jpg"}
+  [1m[36mLukisan Load (0.3ms)[0m  [1m[34mSELECT "lukisans".* FROM "lukisans"[0m
+  ↳ app/controllers/lukisans_controller.rb:8
+Completed 200 OK in 2ms (Views: 1.4ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/lukisans/?title=art%20banget&description=ini%20lukisan%20keren%20banget&imagepath=ani.com/anu.jpg" for 127.0.0.1 at 2018-05-17 21:54:34 +0700
+Processing by LukisansController#index as HTML
+  Parameters: {"title"=>"art banget", "description"=>"ini lukisan keren banget", "imagepath"=>"ani.com/anu.jpg"}
+  [1m[36mLukisan Load (0.3ms)[0m  [1m[34mSELECT "lukisans".* FROM "lukisans"[0m
+  ↳ app/controllers/lukisans_controller.rb:8
+Completed 200 OK in 2ms (Views: 1.3ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/lukisans/?title=art%20banget&description=ini%20lukisan%20keren%20banget&imagepath=ani.com/anu.jpg" for 127.0.0.1 at 2018-05-17 21:54:34 +0700
+Processing by LukisansController#index as HTML
+  Parameters: {"title"=>"art banget", "description"=>"ini lukisan keren banget", "imagepath"=>"ani.com/anu.jpg"}
+  [1m[36mLukisan Load (0.3ms)[0m  [1m[34mSELECT "lukisans".* FROM "lukisans"[0m
+  ↳ app/controllers/lukisans_controller.rb:8
+Completed 200 OK in 2ms (Views: 1.3ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/lukisans/?title=art%20banget&description=ini%20lukisan%20keren%20banget&imagepath=ani.com/anu.jpg" for 127.0.0.1 at 2018-05-17 21:54:38 +0700
+Processing by LukisansController#index as HTML
+  Parameters: {"title"=>"art banget", "description"=>"ini lukisan keren banget", "imagepath"=>"ani.com/anu.jpg"}
+  [1m[36mLukisan Load (0.5ms)[0m  [1m[34mSELECT "lukisans".* FROM "lukisans"[0m
+  ↳ app/controllers/lukisans_controller.rb:8
+Completed 200 OK in 3ms (Views: 1.7ms | ActiveRecord: 0.5ms)
+
+
+Started POST "/lukisans" for 127.0.0.1 at 2018-05-17 21:55:00 +0700
+Processing by LukisansController#create as JSON
+  Parameters: {"title"=>"art keren banget", "description"=>"ini keren banget sumpah", "imagepath"=>"ani.com/anu.jpg", "lukisan"=>{"title"=>"art keren banget", "description"=>"ini keren banget sumpah", "imagepath"=>"ani.com/anu.jpg"}}
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/lukisans_controller.rb:20
+  [1m[36mLukisan Create (0.3ms)[0m  [1m[32mINSERT INTO "lukisans" ("title", "description", "imagepath", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["title", "art keren banget"], ["description", "ini keren banget sumpah"], ["imagepath", "ani.com/anu.jpg"], ["created_at", "2018-05-17 14:55:00.338969"], ["updated_at", "2018-05-17 14:55:00.338969"]]
+  ↳ app/controllers/lukisans_controller.rb:20
+  [1m[35m (65.8ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/lukisans_controller.rb:20
+Completed 201 Created in 71ms (Views: 1.0ms | ActiveRecord: 66.2ms)
+
+
+Started GET "/lukisans/" for 127.0.0.1 at 2018-05-17 21:55:08 +0700
+Processing by LukisansController#index as HTML
+  [1m[36mLukisan Load (0.3ms)[0m  [1m[34mSELECT "lukisans".* FROM "lukisans"[0m
+  ↳ app/controllers/lukisans_controller.rb:8
+Completed 200 OK in 2ms (Views: 1.4ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/lukisans/2" for 127.0.0.1 at 2018-05-17 21:55:11 +0700
+Processing by LukisansController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mLukisan Load (0.4ms)[0m  [1m[34mSELECT  "lukisans".* FROM "lukisans" WHERE "lukisans"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/lukisans_controller.rb:44
+Completed 200 OK in 3ms (Views: 0.8ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/lukisans/1" for 127.0.0.1 at 2018-05-17 21:55:14 +0700
+Processing by LukisansController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mLukisan Load (0.4ms)[0m  [1m[34mSELECT  "lukisans".* FROM "lukisans" WHERE "lukisans"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/lukisans_controller.rb:44
+Completed 200 OK in 2ms (Views: 0.5ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/lukisans/new" for 127.0.0.1 at 2018-05-17 22:47:58 +0700
+Processing by LukisansController#show as HTML
+  Parameters: {"id"=>"new"}
+  [1m[36mLukisan Load (0.6ms)[0m  [1m[34mSELECT  "lukisans".* FROM "lukisans" WHERE "lukisans"."id" = $1 LIMIT $2[0m  [["id", 0], ["LIMIT", 1]]
+  ↳ app/controllers/lukisans_controller.rb:44
+Completed 404 Not Found in 2ms (ActiveRecord: 0.6ms)
+
+
+  
+ActiveRecord::RecordNotFound (Couldn't find Lukisan with 'id'=new):
+  
+app/controllers/lukisans_controller.rb:44:in `set_lukisan'
+Started POST "/lukisans/?title=art%20keren&description=ini%20lukisan%20keren%20sekali&imagepath=anu.jpg" for 127.0.0.1 at 2018-05-18 09:24:01 +0700
+  [1m[35m (42.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /home/rio/.rvm/gems/ruby-2.4.1/gems/activerecord-5.2.0/lib/active_record/log_subscriber.rb:98
+Processing by LukisansController#create as */*
+  Parameters: {"title"=>"art keren", "description"=>"ini lukisan keren sekali", "imagepath"=>"anu.jpg"}
+Completed 400 Bad Request in 21ms (ActiveRecord: 0.0ms)
+
+
+  
+ActionController::ParameterMissing (param is missing or the value is empty: lukisan):
+  
+app/controllers/lukisans_controller.rb:49:in `lukisan_params'
+app/controllers/lukisans_controller.rb:18:in `create'
+Started DELETE "/lukisans/1" for 127.0.0.1 at 2018-05-18 09:59:36 +0700
+Processing by LukisansController#destroy as */*
+  Parameters: {"id"=>"1"}
+  [1m[36mLukisan Load (49.0ms)[0m  [1m[34mSELECT  "lukisans".* FROM "lukisans" WHERE "lukisans"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/lukisans_controller.rb:44
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/lukisans_controller.rb:38
+  [1m[36mLukisan Destroy (0.7ms)[0m  [1m[31mDELETE FROM "lukisans" WHERE "lukisans"."id" = $1[0m  [["id", 1]]
+  ↳ app/controllers/lukisans_controller.rb:38
+  [1m[35m (130.0ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/lukisans_controller.rb:38
+Completed 204 No Content in 407ms (ActiveRecord: 267.3ms)
+
+
+Started GET "/" for 127.0.0.1 at 2018-05-18 09:59:54 +0700
+Processing by Rails::WelcomeController#index as HTML
+  Rendering /home/rio/.rvm/gems/ruby-2.4.1/gems/railties-5.2.0/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /home/rio/.rvm/gems/ruby-2.4.1/gems/railties-5.2.0/lib/rails/templates/rails/welcome/index.html.erb (15.9ms)
+Completed 200 OK in 97ms (Views: 60.8ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/lukisans/1" for 127.0.0.1 at 2018-05-18 09:59:59 +0700
+Processing by LukisansController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mLukisan Load (0.7ms)[0m  [1m[34mSELECT  "lukisans".* FROM "lukisans" WHERE "lukisans"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/lukisans_controller.rb:44
+Completed 404 Not Found in 4ms (ActiveRecord: 1.3ms)
+
+
+  
+ActiveRecord::RecordNotFound (Couldn't find Lukisan with 'id'=1):
+  
+app/controllers/lukisans_controller.rb:44:in `set_lukisan'
+Started GET "/favicon.ico" for 127.0.0.1 at 2018-05-18 10:00:00 +0700
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+actionpack (5.2.0) lib/action_dispatch/middleware/debug_exceptions.rb:65:in `call'
+actionpack (5.2.0) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (5.2.0) lib/rails/rack/logger.rb:38:in `call_app'
+railties (5.2.0) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (5.2.0) lib/active_support/tagged_logging.rb:71:in `block in tagged'
+activesupport (5.2.0) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (5.2.0) lib/active_support/tagged_logging.rb:71:in `tagged'
+railties (5.2.0) lib/rails/rack/logger.rb:26:in `call'
+actionpack (5.2.0) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (5.2.0) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.0.5) lib/rack/runtime.rb:22:in `call'
+activesupport (5.2.0) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (5.2.0) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (5.2.0) lib/action_dispatch/middleware/static.rb:127:in `call'
+rack (2.0.5) lib/rack/sendfile.rb:111:in `call'
+railties (5.2.0) lib/rails/engine.rb:524:in `call'
+puma (3.11.4) lib/puma/configuration.rb:225:in `call'
+puma (3.11.4) lib/puma/server.rb:632:in `handle_request'
+puma (3.11.4) lib/puma/server.rb:446:in `process_client'
+puma (3.11.4) lib/puma/server.rb:306:in `block in run'
+puma (3.11.4) lib/puma/thread_pool.rb:120:in `block in spawn_thread'
+Started GET "/lukisans/" for 127.0.0.1 at 2018-05-18 10:00:05 +0700
+Processing by LukisansController#index as HTML
+  [1m[36mLukisan Load (0.3ms)[0m  [1m[34mSELECT "lukisans".* FROM "lukisans"[0m
+  ↳ app/controllers/lukisans_controller.rb:8
+Completed 200 OK in 2ms (Views: 1.4ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/lukisans/2" for 127.0.0.1 at 2018-05-18 10:00:08 +0700
+Processing by LukisansController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mLukisan Load (0.6ms)[0m  [1m[34mSELECT  "lukisans".* FROM "lukisans" WHERE "lukisans"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/lukisans_controller.rb:44
+Completed 200 OK in 4ms (Views: 1.1ms | ActiveRecord: 0.6ms)
+
+
+Started DELETE "/lukisans/2" for 127.0.0.1 at 2018-05-18 10:00:15 +0700
+Processing by LukisansController#destroy as */*
+  Parameters: {"id"=>"2"}
+  [1m[36mLukisan Load (0.4ms)[0m  [1m[34mSELECT  "lukisans".* FROM "lukisans" WHERE "lukisans"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/lukisans_controller.rb:44
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/lukisans_controller.rb:38
+  [1m[36mLukisan Destroy (0.4ms)[0m  [1m[31mDELETE FROM "lukisans" WHERE "lukisans"."id" = $1[0m  [["id", 2]]
+  ↳ app/controllers/lukisans_controller.rb:38
+  [1m[35m (42.8ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/lukisans_controller.rb:38
+Completed 204 No Content in 48ms (ActiveRecord: 43.9ms)
+
+
+Started GET "/lukisans/2" for 127.0.0.1 at 2018-05-18 10:00:26 +0700
+Processing by LukisansController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mLukisan Load (0.3ms)[0m  [1m[34mSELECT  "lukisans".* FROM "lukisans" WHERE "lukisans"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/lukisans_controller.rb:44
+Completed 404 Not Found in 1ms (ActiveRecord: 0.3ms)
+
+
+  
+ActiveRecord::RecordNotFound (Couldn't find Lukisan with 'id'=2):
+  
+app/controllers/lukisans_controller.rb:44:in `set_lukisan'
+Started GET "/lukisans/" for 127.0.0.1 at 2018-05-18 10:00:28 +0700
+Processing by LukisansController#index as HTML
+  [1m[36mLukisan Load (0.4ms)[0m  [1m[34mSELECT "lukisans".* FROM "lukisans"[0m
+  ↳ app/controllers/lukisans_controller.rb:8
+Completed 200 OK in 2ms (Views: 1.4ms | ActiveRecord: 0.4ms)
+
+
+Started POST "/lukisans" for 127.0.0.1 at 2018-05-18 10:04:11 +0700
+Processing by LukisansController#create as JSON
+  Parameters: {"title"=>"Reflejos rojos", "description"=>"ini keren banget sumpah", "imagepath"=>"https://c2.staticflickr.com/2/1213/5110249320_d868dbcfe2_b.jpg", "lukisan"=>{"title"=>"Reflejos rojos", "description"=>"ini keren banget sumpah", "imagepath"=>"https://c2.staticflickr.com/2/1213/5110249320_d868dbcfe2_b.jpg"}}
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/lukisans_controller.rb:20
+  [1m[36mLukisan Create (25.9ms)[0m  [1m[32mINSERT INTO "lukisans" ("title", "description", "imagepath", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["title", "Reflejos rojos"], ["description", "ini keren banget sumpah"], ["imagepath", "https://c2.staticflickr.com/2/1213/5110249320_d868dbcfe2_b.jpg"], ["created_at", "2018-05-18 03:04:11.593955"], ["updated_at", "2018-05-18 03:04:11.593955"]]
+  ↳ app/controllers/lukisans_controller.rb:20
+  [1m[35m (9.0ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/lukisans_controller.rb:20
+Completed 201 Created in 41ms (Views: 1.6ms | ActiveRecord: 35.0ms)
+
+
+Started DELETE "/lukisans/2" for 127.0.0.1 at 2018-05-18 10:05:20 +0700
+Processing by LukisansController#destroy as */*
+  Parameters: {"id"=>"2"}
+  [1m[36mLukisan Load (0.3ms)[0m  [1m[34mSELECT  "lukisans".* FROM "lukisans" WHERE "lukisans"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/lukisans_controller.rb:44
+Completed 404 Not Found in 1ms (ActiveRecord: 0.3ms)
+
+
+  
+ActiveRecord::RecordNotFound (Couldn't find Lukisan with 'id'=2):
+  
+app/controllers/lukisans_controller.rb:44:in `set_lukisan'
+Started DELETE "/lukisans/3" for 127.0.0.1 at 2018-05-18 10:05:29 +0700
+Processing by LukisansController#destroy as */*
+  Parameters: {"id"=>"3"}
+  [1m[36mLukisan Load (0.3ms)[0m  [1m[34mSELECT  "lukisans".* FROM "lukisans" WHERE "lukisans"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/lukisans_controller.rb:44
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/lukisans_controller.rb:38
+  [1m[36mLukisan Destroy (0.3ms)[0m  [1m[31mDELETE FROM "lukisans" WHERE "lukisans"."id" = $1[0m  [["id", 3]]
+  ↳ app/controllers/lukisans_controller.rb:38
+  [1m[35m (39.9ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/lukisans_controller.rb:38
+Completed 204 No Content in 43ms (ActiveRecord: 40.6ms)
+
+
+Started POST "/lukisans" for 127.0.0.1 at 2018-05-18 10:05:35 +0700
+Processing by LukisansController#create as JSON
+  Parameters: {"title"=>"Reflejos rojos", "description"=>"ini keren banget sumpah", "imagepath"=>"https://c2.staticflickr.com/2/1213/5110249320_d868dbcfe2_b.jpg", "lukisan"=>{"title"=>"Reflejos rojos", "description"=>"ini keren banget sumpah", "imagepath"=>"https://c2.staticflickr.com/2/1213/5110249320_d868dbcfe2_b.jpg"}}
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/lukisans_controller.rb:20
+  [1m[36mLukisan Create (0.3ms)[0m  [1m[32mINSERT INTO "lukisans" ("title", "description", "imagepath", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["title", "Reflejos rojos"], ["description", "ini keren banget sumpah"], ["imagepath", "https://c2.staticflickr.com/2/1213/5110249320_d868dbcfe2_b.jpg"], ["created_at", "2018-05-18 03:05:35.798101"], ["updated_at", "2018-05-18 03:05:35.798101"]]
+  ↳ app/controllers/lukisans_controller.rb:20
+  [1m[35m (50.9ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/lukisans_controller.rb:20
+Completed 201 Created in 55ms (Views: 0.9ms | ActiveRecord: 51.3ms)
+
+
+Started PUT "/lukisans/4" for 127.0.0.1 at 2018-05-18 10:08:50 +0700
+Processing by LukisansController#update as JSON
+  Parameters: {"title"=>"Edit Reflejos rojos", "description"=>"ini keren banget sumpah", "imagepath"=>"https://c2.staticflickr.com/2/1213/5110249320_d868dbcfe2_b.jpg", "id"=>"4", "lukisan"=>{"title"=>"Edit Reflejos rojos", "description"=>"ini keren banget sumpah", "imagepath"=>"https://c2.staticflickr.com/2/1213/5110249320_d868dbcfe2_b.jpg"}}
+  [1m[36mLukisan Load (0.2ms)[0m  [1m[34mSELECT  "lukisans".* FROM "lukisans" WHERE "lukisans"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/lukisans_controller.rb:44
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/lukisans_controller.rb:29
+  [1m[36mLukisan Update (0.4ms)[0m  [1m[33mUPDATE "lukisans" SET "title" = $1, "updated_at" = $2 WHERE "lukisans"."id" = $3[0m  [["title", "Edit Reflejos rojos"], ["updated_at", "2018-05-18 03:08:50.701006"], ["id", 4]]
+  ↳ app/controllers/lukisans_controller.rb:29
+  [1m[35m (44.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/lukisans_controller.rb:29
+Completed 200 OK in 51ms (Views: 0.8ms | ActiveRecord: 45.3ms)
+
+
