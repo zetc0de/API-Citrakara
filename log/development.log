@@ -2554,3 +2554,41 @@ Completed 200 OK in 48ms (Views: 1.2ms | ActiveRecord: 11.3ms)
 >>>>>>> artistCRUD
 
 
+  [1m[36mLukisan Load (47.5ms)[0m  [1m[34mSELECT  "lukisans".* FROM "lukisans" LIMIT $1[0m  [["LIMIT", 11]]
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mLukisan Create (63.2ms)[0m  [1m[32mINSERT INTO "lukisans" ("title", "description", "imagepath", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["title", "Panorama Jogja"], ["description", "Ini panorama diambil dari tempat yang strategis coy"], ["imagepath", "facebook.com/anu.png"], ["created_at", "2018-05-21 16:46:56.096463"], ["updated_at", "2018-05-21 16:46:56.096463"]]
+  [1m[35m (12.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mLukisan Load (0.6ms)[0m  [1m[34mSELECT  "lukisans".* FROM "lukisans" LIMIT $1[0m  [["LIMIT", 11]]
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mLukisan Create (0.7ms)[0m  [1m[32mINSERT INTO "lukisans" ("title", "description", "imagepath", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["title", "Pemandangan Kaliurang"], ["description", "Ini pemandangan keren banget sumpah dah"], ["imagepath", "anu.me/anu.jpg"], ["created_at", "2018-05-21 16:49:33.874026"], ["updated_at", "2018-05-21 16:49:33.874026"]]
+  [1m[35m (45.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mLukisan Load (0.7ms)[0m  [1m[34mSELECT  "lukisans".* FROM "lukisans" LIMIT $1[0m  [["LIMIT", 11]]
+  [1m[36mLukisan Load (0.3ms)[0m  [1m[34mSELECT  "lukisans".* FROM "lukisans" WHERE "lukisans"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mLukisan Load (0.7ms)[0m  [1m[34mSELECT  "lukisans".* FROM "lukisans" WHERE "lukisans"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mLukisan Load (0.8ms)[0m  [1m[34mSELECT  "lukisans".* FROM "lukisans" WHERE "lukisans"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  [1m[36mLukisan Load (0.7ms)[0m  [1m[34mSELECT  "lukisans".* FROM "lukisans" WHERE "lukisans"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mLukisan Load (0.6ms)[0m  [1m[34mSELECT  "lukisans".* FROM "lukisans" WHERE "lukisans"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mLukisan Create (0.7ms)[0m  [1m[32mINSERT INTO "lukisans" ("title", "description", "imagepath", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["title", "Wkwkwkwk Land"], ["description", "Pemandangan indah wkwkw Land"], ["imagepath", "wkwkland.com/image.png"], ["created_at", "2018-05-21 16:53:05.250910"], ["updated_at", "2018-05-21 16:53:05.250910"]]
+  [1m[35m (49.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mLukisan Load (0.6ms)[0m  [1m[34mSELECT  "lukisans".* FROM "lukisans" LIMIT $1[0m  [["LIMIT", 11]]
+  [1m[36mLukisan Load (0.7ms)[0m  [1m[34mSELECT  "lukisans".* FROM "lukisans" WHERE "lukisans"."id" = $1 LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+  [1m[36mLukisan Load (0.5ms)[0m  [1m[34mSELECT  "lukisans".* FROM "lukisans" WHERE "lukisans"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mLukisan Update (0.7ms)[0m  [1m[33mUPDATE "lukisans" SET "title" = $1, "updated_at" = $2 WHERE "lukisans"."id" = $3[0m  [["title", "Ini panorama jogja"], ["updated_at", "2018-05-21 17:17:17.204608"], ["id", 5]]
+  [1m[35m (53.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mLukisan Load (0.7ms)[0m  [1m[34mSELECT  "lukisans".* FROM "lukisans" WHERE "lukisans"."title" = $1 LIMIT $2[0m  [["title", "wkwk"], ["LIMIT", 11]]
+  [1m[36mLukisan Load (0.7ms)[0m  [1m[34mSELECT  "lukisans".* FROM "lukisans" WHERE "lukisans"."title" = $1 LIMIT $2[0m  [["title", "Ini"], ["LIMIT", 11]]
+  [1m[36mLukisan Load (0.5ms)[0m  [1m[34mSELECT  "lukisans".* FROM "lukisans" WHERE "lukisans"."title" = $1 LIMIT $2[0m  [["title", "Ini%"], ["LIMIT", 11]]
+  [1m[36mLukisan Load (0.6ms)[0m  [1m[34mSELECT  "lukisans".* FROM "lukisans" WHERE "lukisans"."title" = $1 LIMIT $2[0m  [["title", "%wkwk%"], ["LIMIT", 11]]
+  [1m[36mLukisan Load (0.6ms)[0m  [1m[34mSELECT  "lukisans".* FROM "lukisans" LIMIT $1[0m  [["LIMIT", 11]]
+  [1m[36mLukisan Load (0.6ms)[0m  [1m[34mSELECT  "lukisans".* FROM "lukisans" WHERE "lukisans"."title" = $1 LIMIT $2[0m  [["title", "Ini panorama jogja"], ["LIMIT", 11]]
+  [1m[36mLukisan Load (1.0ms)[0m  [1m[34mSELECT  "lukisans".* FROM "lukisans" WHERE "lukisans"."title" = $1 LIMIT $2[0m  [["title", "Ini panorama jogja"], ["LIMIT", 11]]
+  [1m[36mLukisan Load (0.5ms)[0m  [1m[34mSELECT  "lukisans".* FROM "lukisans" WHERE "lukisans"."title" = $1 LIMIT $2[0m  [["title", "Ini panorama jogja"], ["LIMIT", 11]]
+  [1m[36mLukisan Load (0.4ms)[0m  [1m[34mSELECT  "lukisans".* FROM "lukisans" WHERE "lukisans"."title" = $1 LIMIT $2[0m  [["title", "Ini panorama jogja"], ["LIMIT", 11]]
+  [1m[36mLukisan Load (0.5ms)[0m  [1m[34mSELECT  "lukisans".* FROM "lukisans" WHERE "lukisans"."title" = $1 LIMIT $2[0m  [["title", "Ini panorama jogja"], ["LIMIT", 11]]
+  [1m[36mLukisan Load (1.0ms)[0m  [1m[34mSELECT  "lukisans".* FROM "lukisans" WHERE "lukisans"."title" = $1 ORDER BY "lukisans"."id" ASC LIMIT $2[0m  [["title", "Ini panorama jogja"], ["LIMIT", 1]]
+  [1m[35m (45.8ms)[0m  [1m[34mSELECT COUNT(*) FROM "lukisans" WHERE "lukisans"."title" = $1[0m  [["title", "Ini panorama jogja"]]
+  [1m[36mLukisan Load (0.6ms)[0m  [1m[34mSELECT "lukisans".* FROM "lukisans" WHERE "lukisans"."title" = $1[0m  [["title", "Ini panorama jogja"]]
+  [1m[36mLukisan Load (0.5ms)[0m  [1m[34mSELECT  "lukisans".* FROM "lukisans" WHERE "lukisans"."title" = $1 LIMIT $2[0m  [["title", "Ini panorama jogja"], ["LIMIT", 1]]
+  [1m[36mLukisan Load (0.7ms)[0m  [1m[34mSELECT  "lukisans".* FROM "lukisans" WHERE "lukisans"."title" = $1 ORDER BY "lukisans"."id" ASC LIMIT $2[0m  [["title", "Ini panorama jogja"], ["LIMIT", 1]]
