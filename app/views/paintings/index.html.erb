@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Paintings</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Description</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @paintings.each do |painting| %>
+      <tr>
+        <td><%= image_tag painting.paint_image %></td>
+
+        <td><%= painting.title %></td>
+        <td><%= painting.description %></td>
+        <td><%= link_to 'Show', painting %></td>
+        
+        <% if user_signed_in? %>
+        <td><%= link_to 'Edit', edit_painting_path(painting) %></td>
+        <td><%= link_to 'Destroy', painting, method: :delete, data: { confirm: 'Are you sure?' } %>
+        </td>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+

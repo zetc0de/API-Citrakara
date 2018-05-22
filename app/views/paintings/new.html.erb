@@ -1,0 +1,7 @@
+<% if user_signed_in? %>
+<h1>New Painting</h1>
+<%= render 'form', painting: @painting %>
+<% else %>
+<h1> Please Login First </h1>>
+<% end %>
+<%= link_to 'Back', paintings_path %>
