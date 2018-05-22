@@ -1,2 +1,0 @@
-class Lukisan < ApplicationRecord
-end
