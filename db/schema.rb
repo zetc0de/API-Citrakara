@@ -10,26 +10,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 2018_05_17_142346) do
-=======
-ActiveRecord::Schema.define(version: 2018_05_17_130944) do
->>>>>>> artistCRUD
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-<<<<<<< HEAD
-  create_table "lukisans", force: :cascade do |t|
-    t.string "title"
-    t.text "description"
-    t.string "imagepath"
-=======
   create_table "artists", force: :cascade do |t|
     t.string "name"
     t.string "email"
     t.text "biography"
->>>>>>> artistCRUD
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "lukisans", force: :cascade do |t|
+    t.string "title"
+    t.text "description"
+    t.string "imagepath"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
