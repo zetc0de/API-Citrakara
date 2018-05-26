@@ -1,6 +1,6 @@
 module V1
   class FeedbacksController < ApplicationController
-    before_action :set_feedback, only: [:create, :show, :update, :destroy]
+    before_action :set_feedback, only: [:show, :update, :destroy]
   
     # GET /feedbacks
     def index
