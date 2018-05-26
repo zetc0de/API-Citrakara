@@ -1,6 +1,8 @@
 module V1
 class PaintingsController < ApplicationController
-before_action :set_painting, only: [ :create, :show, :update, :destroy]
+before_action :authenticate_user, only: [ :show, :update, :destroy, :index ]
+before_action :set_painting, only: [:show, :update, :destroy]
+before_action :set_user, only: [ :show, :update, :destroy] 
 
 	def index
 		@paintings = Painting.all
@@ -34,16 +36,16 @@ before_action :set_painting, only: [ :create, :show, :update, :destroy]
 	end
 
 private
-	# def set_painting
-	#     @painting = Painting.find(params[:id])
-	# end
+	def set_painting
+	    @painting = Painting.find(params[:id])
+	end
 
 	def painting_params
 		params.require(:painting).permit(:title,:description,:imagepath)
 	end
 
-	def set_painting
-		@painting = current_painting
+	def set_user
+		@user = current_user
 	end
 
 

@@ -15,6 +15,7 @@ namespace :v1 do
 	delete 'user/del', to: 'users#destroy'
 
 
+
 		resources :paintings
 	end
 # >>>>>>> 67562002140f2e87d144fb21a70f46565ad5d4ab

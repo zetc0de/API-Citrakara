@@ -1,9 +1,7 @@
 class User < ApplicationRecord
 	has_secure_password
-validates :username, uniqueness: true , length: { in: 1..10 }
-validates :email, uniqueness: true 
-validates :password, presence: true , allow_nil: true
-
-has_many :paintings,foreign_key: :created_by
-
+	has_many :paintings
+	validates :username, uniqueness: true, length: { in: 1..10 }
+	validates :password, presence: true
+	validates :email, uniqueness: true
 end

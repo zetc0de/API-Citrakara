@@ -10,29 +10,32 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_05_26_035354) do
+ActiveRecord::Schema.define(version: 2018_05_26_131432) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "paintings", force: :cascade do |t|
     t.string "title"
-    t.text "description"
+    t.string "description"
     t.string "imagepath"
+    t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_paintings_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
     t.string "username"
     t.string "email"
     t.string "password_digest"
-    t.boolean "artist", default: false
-    t.boolean "admin", default: false
+    t.boolean "artist"
+    t.boolean "admin"
     t.string "bio"
     t.string "telp"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "paintings", "users"
 end
