@@ -22,7 +22,7 @@ before_action :set_user, only: [ :show, :update, :destroy]
 	end
 
 	def update	
-		if User.update(update_param)
+		if @user = User.update(update_param)
 			render json: { result: true, user: { id: @user.id, username: @user.username, email: @user.email } }, status: :created
 		else
 			render json: { result: false, user: @user.errors }, status: :unprocessable_entity
@@ -41,7 +41,7 @@ before_action :set_user, only: [ :show, :update, :destroy]
 	end
 
 	def update_param
-		params.require(:user).permit(:username, :bio,  :password, :password_confirmation)
+		params.require(:user).permit(:username, :bio)
 	end
 
 	def set_user

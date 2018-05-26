@@ -10,16 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 2018_05_26_035354) do
-=======
-ActiveRecord::Schema.define(version: 2018_05_26_035205) do
->>>>>>> 67562002140f2e87d144fb21a70f46565ad5d4ab
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-<<<<<<< HEAD
+  create_table "paintings", force: :cascade do |t|
+    t.string "title"
+    t.text "description"
+    t.string "imagepath"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "username"
     t.string "email"
@@ -28,12 +31,6 @@ ActiveRecord::Schema.define(version: 2018_05_26_035205) do
     t.boolean "admin", default: false
     t.string "bio"
     t.string "telp"
-=======
-  create_table "paintings", force: :cascade do |t|
-    t.string "title"
-    t.text "description"
-    t.string "imagepath"
->>>>>>> 67562002140f2e87d144fb21a70f46565ad5d4ab
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
