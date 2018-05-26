@@ -2,10 +2,13 @@ source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.4.1'
+<<<<<<< HEAD
 
 gem 'bcrypt', '~> 3.1.7'
 gem 'knock'
 gem  'jwt'
+=======
+>>>>>>> 67562002140f2e87d144fb21a70f46565ad5d4ab
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.0'

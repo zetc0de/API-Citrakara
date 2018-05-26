@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+<<<<<<< HEAD
 
 
 namespace :v1 do
@@ -15,5 +16,10 @@ namespace :v1 do
 
 
 end
+=======
+	namespace :v1 do
+		resources :paintings
+	end
+>>>>>>> 67562002140f2e87d144fb21a70f46565ad5d4ab
 
 end
