@@ -1,6 +1,5 @@
-module V1
-class PaintingsController < ApplicationController
-before_action :set_painting, only: [ :create, :show, :update, :destroy]
+class V1::PaintingsController < ApplicationController
+before_action :set_painting, only: [:show, :update,:destroy]
 
 	def index
 		@paintings = Painting.all
@@ -11,10 +10,10 @@ before_action :set_painting, only: [ :create, :show, :update, :destroy]
 		render json: { painting: @painting }
 	end
 
-	def create
-		@painting = Painting.new(painting_params)
+	def create	
+		@painting = current_user.paintings.create(painting_params)
 		if @painting.save
-			render json: { result: true, painting: @painting }, status: :created
+			render json: { result: true , painting: @painting, status: :created }
 		else
 			render json: { result: false, painting: @painting.errors }, status: :unprocessable_entity
 		end
@@ -34,19 +33,18 @@ before_action :set_painting, only: [ :create, :show, :update, :destroy]
 	end
 
 private
-	# def set_painting
-	#     @painting = Painting.find(params[:id])
-	# end
+	def set_painting
+	     @painting = Painting.find(params[:id])
+	end
 
 	def painting_params
 		params.require(:painting).permit(:title,:description,:imagepath)
 	end
 
-	def set_painting
-		@painting = current_painting
-	end
+	#def set_painting
+	#	@painting = current_painting
+	#end
 
 
 end
 
-end
