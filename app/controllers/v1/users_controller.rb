@@ -1,13 +1,13 @@
 class V1::UsersController < ApplicationController
-
 before_action :authenticate_user, only: [ :show, :update, :destroy, :index ]
+ 	
 before_action :set_user, only: [ :show, :update, :destroy] 
 
 	def index
 		@users = User.all
 		render json: { result: true, user: @users }, status: :ok
 	end
-
+ 	
 	def create
 		@user = User.create(create_param)
 		if @user.save
