@@ -47,3 +47,11 @@ end
 # 		"bio": "wkwkw land"
 # }
 
+#Tambah image
+# {
+# 	"painting": {
+# 		"title": "Pemandangan Kaliurang",
+# 		"description": "Ini adalah pemandangan Kaliurang yang keren banget",
+# 		"imagepath": "Anu.com/anu.jpg"
+# 	}
+# }

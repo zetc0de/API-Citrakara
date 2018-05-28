@@ -1,11 +1,9 @@
 class V1::PaintingsController < ApplicationController
-<<<<<<< HEAD
+
 before_action :authenticate_user, only: [ :create, :show, :update, :destroy, :index ]
 
-before_action :set_painting, only: [ :create, :show, :update, :destroy]
-=======
-before_action :set_painting, only: [:show, :update,:destroy]
->>>>>>> bb1694d5f28b1efc4489000f38d7e6a917b3ce2e
+before_action :set_painting, only: [ :show, :update, :destroy]
+
 
 	def index
 		@paintings = Painting.all
@@ -16,11 +14,10 @@ before_action :set_painting, only: [:show, :update,:destroy]
 		render json: { painting: @painting }
 	end
 
-<<<<<<< HEAD
-	def create
-=======
+
+
 	def create	
->>>>>>> bb1694d5f28b1efc4489000f38d7e6a917b3ce2e
+
 		@painting = current_user.paintings.create(painting_params)
 		if @painting.save
 			render json: { result: true , painting: @painting, status: :created }
@@ -43,28 +40,25 @@ before_action :set_painting, only: [:show, :update,:destroy]
 	end
 
 private
-<<<<<<< HEAD
 
-=======
 	def set_painting
 	     @painting = Painting.find(params[:id])
 	end
->>>>>>> bb1694d5f28b1efc4489000f38d7e6a917b3ce2e
 
 	def painting_params
 		params.require(:painting).permit(:title,:description,:imagepath)
 	end
 
-<<<<<<< HEAD
+
 	def set_painting
 		@painting = Painting.find(params[:id])
 	end
-=======
+
 	#def set_painting
 	#	@painting = current_painting
 	#end
->>>>>>> bb1694d5f28b1efc4489000f38d7e6a917b3ce2e
 
+end
 
 
 
