@@ -1,8 +1,11 @@
 class V1::CommentsController < ApplicationController
     before_action :set_comment, only: [:show, :update, :destroy]
+    before_action :set_painting
+    before_action :authenticate_user, only: [:create,  :show, :update, :destroy]
+
 
     def index
-		@comments = Comment.all
+        @comments = Comment.all
 		render json: @comments
     end
     
@@ -11,9 +14,11 @@ class V1::CommentsController < ApplicationController
     end
 
     def create
-        @comment = Comment.new(comment_params)
+        @comment = current_user.comments.create(comment_params)
         if @comment.save
-            render json: @comment, status: :created
+            render json: { result: true, comment: @comment }, status: :created
+        else
+            render json: { result: false, comment: @comment.errors }, status: :unprocessable_entity
         end
     end
 
@@ -30,11 +35,17 @@ class V1::CommentsController < ApplicationController
 	end
 
 private
+    def set_painting
+        @painting = Painting.find(params[:painting_id])
+    end
+
 	def set_comment
-	    @comment = Comment.find(params[:id])
+	    @comment = Comment.find(params[:painting_id])
 	end
 
 	def comment_params
-		params.permit(:comment)
-	end
+		params.permit(:content,:painting_id,:user_id)
+    end
+
+
 end
