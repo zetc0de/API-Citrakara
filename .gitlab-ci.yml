@@ -1,0 +1,38 @@
+image: "ruby:2.4.4"
+
+services:
+  - postgres:latest
+
+variables:
+  POSTGRES_DB: citrakara
+
+cache:
+  paths:
+    - vendor/ruby
+
+stages:
+  - build
+  - deploy
+
+proses compile:
+  variables: 
+    DATABASE_URL: "postgresql://postgres:postgres@postgres:5432/$POSTGRES_DB"
+  stage: build
+  script: 
+    - apt-get update && apt install -y -qq nodejs
+    - gem install bundler --no-ri --no-rdoc
+    - gem install execjs
+    - RAILS_ENV=test bundle install --jobs $(nproc) "${FLAGS[@]}"
+    - bundle exec rake db:migrate
+    - bundle exec rake db:seed
+  except:
+    - master
+
+proses deploy production:
+  stage: deploy
+  environment: production
+  script:
+   - gem install dpl
+   - dpl --provider=heroku --app=api-citrakara --api-key=9d7b1007-de22-47a6-90c0-f2a9b41d6418
+  only:
+   - master
