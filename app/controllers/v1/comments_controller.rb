@@ -1,8 +1,7 @@
 class V1::CommentsController < ApplicationController
-    before_action :set_comment, only: [:show, :update, :destroy]
-    before_action :set_painting
-    before_action :authenticate_user, only: [:create,  :show, :update, :destroy]
-
+before_action :set_comment, only: [:show, :update, :destroy]
+before_action :set_painting
+before_action :authenticate_user, only: [:create,  :show, :update, :destroy]
 
     def index
         @comments = Comment.all
@@ -14,7 +13,8 @@ class V1::CommentsController < ApplicationController
     end
 
     def create
-        @comment = current_user.comments.create(comment_params)
+        #@comment = current_user.comments.create(comment_params)
+        @comment = Comment.create(content: params[:content],painting_id: params[:painting_id],user_id: current_user.id)
         if @comment.save
             render json: { result: true, comment: @comment }, status: :created
         else
@@ -22,13 +22,13 @@ class V1::CommentsController < ApplicationController
         end
     end
 
-    def update
-        if @comment = @comment.update(comment_params)
-            render json: @comment
-        else 
-            render json: @comment.errors, status: unprocessable_entity
-        end
-    end
+#    def update
+#        if @comment = @comment.update(comment_params)
+#            render json: @comment
+#        else 
+#            render json: @comment.errors, status: unprocessable_entity
+#        end
+#    end
 
     def destroy
 		@comment.destroy
