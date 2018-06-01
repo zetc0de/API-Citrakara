@@ -2,6 +2,9 @@ class V1::PaintingsController < ApplicationController
 before_action :authenticate_user, only: [ :create, :show, :update, :destroy]
 before_action :set_painting, only: [ :show, :update, :destroy]
 
+  	def check_configuration
+    	render json: { msg: 'configuration_missing'} if Cloudinary.config.api_key.blank?
+  	end
 
 	def index
 		@paintings = Painting.all
@@ -15,9 +18,10 @@ before_action :set_painting, only: [ :show, :update, :destroy]
 	
 	end
 	def create	
+		check_configuration
 		@painting = current_user.paintings.create(painting_params)
 		if @painting.save
-			render json: { result: true , painting: @painting, status: :created }
+			render json: { result: ' The Painting is successfully Created' , status: :created }
 		else
 			render json: { result: false, painting: @painting.errors }, status: :unprocessable_entity
 		end
@@ -40,7 +44,7 @@ private
 	     @painting = Painting.find(params[:user_id])
 	end
 	def painting_params
-		params.require(:painting).permit(:title,:description,:imagepath)
+		params.permit(:title,:description,:imagepath)
 	end
 end
 
