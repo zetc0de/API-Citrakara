@@ -46,6 +46,7 @@ private
 	def painting_params
 		params.permit(:title,:description,:imagepath)
 	end
+
 end
 
 
