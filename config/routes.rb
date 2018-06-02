@@ -21,6 +21,13 @@ end
 # >>>>>>> 67562002140f2e87d144fb21a70f46565ad5d4ab
 	
 
+	post 'user/signup', to: 'users#create'
+	get 'user/all', to: 'users#index'
+	get 'user', to: 'users#show'
+	put 'user/edit', to: 'users#update'
+	delete 'user/del', to: 'users#destroy'
+	resources :paintings, :feedbacks
+	end
 end
 
 
