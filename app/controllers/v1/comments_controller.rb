@@ -22,7 +22,8 @@ before_action :authenticate_user, only: [:create,  :show, :update, :destroy]
         end
     end
 
-#    def update
+# Blom ada fitur edit comment 
+#   def update
 #        if @comment = @comment.update(comment_params)
 #            render json: @comment
 #        else 
