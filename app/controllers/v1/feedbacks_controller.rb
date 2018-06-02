@@ -1,12 +1,11 @@
 class V1::FeedbacksController < ApplicationController
-  before_action :authenticate_user, only: [ :create, :show, :update, :destroy, :index ]
-  before_action :set_feedback, only: [ :show, :update, :destroy]
+before_action :authenticate_user, only: [ :create, :show, :update, :destroy, :index ]
+before_action :set_feedback, only: [ :show, :update, :destroy]
 
   # GET /feedbacks
   def index
     @feedbacks = Feedback.all
-
-    render json: { feedback: @feedback }
+    render json: { feedback: @feedbacks }
   end
 
   # GET /feedbacks/1
@@ -16,22 +15,21 @@ class V1::FeedbacksController < ApplicationController
 
   # POST /feedbacks
   def create
-    @feedback = current_user.feedbacks.new(feedback_params)
-
+    @feedback = Feedback.new(feedback_params)
     if @feedback.save
-			render json: { result: true , feedback: @feedback, status: :created }
+			 render json: { result: true , feedback: @feedback, status: :created }
 		else
-			render json: { result: false, feedback: @feedback.errors }, status: :unprocessable_entity
+			 render json: { result: false, feedback: @feedback.errors }, status: :unprocessable_entity
 		end
   end
 
   # PATCH/PUT /feedbacks/1
   def update
     #masih belum 100% karena tiap update malah ke update semua
-    if @feedback = current_user.feedbacks.update(feedback_params)
-      render json: {feedback: @feedback}
+    if @feedback = Feedback.update(feedback_params)
+       render json: {feedback: @feedback}
     else
-      render json: {feedback: @feedback.errors}, status: :unprocessable_entity
+       render json: {feedback: @feedback.errors}, status: :unprocessable_entity
     end
   end
 
@@ -41,7 +39,7 @@ class V1::FeedbacksController < ApplicationController
     head 204
   end
 
-  private
+private
     # Use callbacks to share common setup or constraints between actions.
     def set_feedback
       @feedback = Feedback.find(params[:id])
