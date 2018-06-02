@@ -1,8 +1,5 @@
 class V1::PaintingsController < ApplicationController
-
-
-before_action :authenticate_user, only: [ :create, :show, :update, :destroy, :index ]
-
+before_action :authenticate_user, only: [ :create, :show, :update, :destroy]
 before_action :set_painting, only: [ :show, :update, :destroy]
 
 
