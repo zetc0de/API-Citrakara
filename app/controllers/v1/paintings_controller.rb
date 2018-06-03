@@ -8,13 +8,19 @@ before_action :set_painting, only: [ :show, :update, :destroy]
 
 	def index
 		@paintings = Painting.all
-		@comments = Comment.all
-		render json: { painting: @paintings, comment: @comments }
+		render json: { painting: @paintings}
 	end
-
+# Display individual Painting With Comments
 	def show
-		#@comments = Comment.find(params[:painting_id])
+		@painting = set_painting
+		@comments = @painting.comments
 		render json: { painting: @painting, comments: @comments }
+	end
+# Display painting by user id
+	def show_by_userid
+		@user = User.find(params[:id])
+		@painting = @user.paintings
+		render json: { painting: @painting }
 	end
 
 	def create	
@@ -28,8 +34,10 @@ before_action :set_painting, only: [ :show, :update, :destroy]
 	end
 
 	def update
-		if @painting = current_user.paintings.update(painting_params)
-			render json: { painting: @painting }
+		#Assign painting ID
+		@editpainting = Painting.where(id: params[:id])
+		if @painting = @editpainting.update(painting_params)
+			render json: { painting: @painting } 
 		else
 			render json: { painting: @painting.errors }, status: :unprocessable_entity
 		end
@@ -43,7 +51,7 @@ before_action :set_painting, only: [ :show, :update, :destroy]
 private
 
 	def set_painting
-	     @painting = Painting.find(params[:user_id])
+	    @painting = Painting.find(params[:id])
 	end
 	
 	def painting_params
