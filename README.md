@@ -5,20 +5,13 @@ application up and running.
 
 Things you may want to cover:
 
-* Ruby version
+Signup
+/v1/user/signup(.:format) 
 
-* System dependencies
+Signin
+/v1/user/signin(.:format)  
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
+List user
+/v1/user/all(.:format)  
 
 
