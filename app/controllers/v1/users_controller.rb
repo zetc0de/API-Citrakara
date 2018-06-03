@@ -33,7 +33,7 @@ before_action :set_user, only: [ :show, :update, :destroy]
 		head 204
 	end
 
-	private
+private
 
 	def create_param
 		params.require(:user).permit(:username, :email, :password, :password_confirmation)

@@ -5,16 +5,15 @@ before_action :authenticate_user, only: [:create,  :show, :update, :destroy]
 
     def index
         @comments = Comment.all
-		render json: @comments
+        render json: { comment: @comments }
     end
     
     def show
-        render json: @comment
+        render json: { comment: @comment }
     end
 
     def create
-        #@comment = current_user.comments.create(comment_params)
-        @comment = Comment.create(content: params[:content],painting_id: params[:painting_id],user_id: current_user.id)
+        @comment = Comment.new(comment_params)
         if @comment.save
             render json: { result: true, comment: @comment }, status: :created
         else
@@ -22,7 +21,8 @@ before_action :authenticate_user, only: [:create,  :show, :update, :destroy]
         end
     end
 
-#    def update
+# Blom ada fitur edit comment 
+#   def update
 #        if @comment = @comment.update(comment_params)
 #            render json: @comment
 #        else 
@@ -32,6 +32,7 @@ before_action :authenticate_user, only: [:create,  :show, :update, :destroy]
 
     def destroy
 		@comment.destroy
+        head 204
 	end
 
 private
@@ -44,7 +45,7 @@ private
 	end
 
 	def comment_params
-		params.permit(:content,:painting_id,:user_id)
+		params.require(:comment).permit(:content,:painting_id,:user_id)
     end
 
 

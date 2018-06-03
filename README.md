@@ -1,24 +1,24 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Citrakara Backend
 
-Things you may want to cover:
+Gems used: 
+Auth is using knock, JWT
+Upload Image is usingCarrierWave, Cloudinary
 
-* Ruby version
 
-* System dependencies
+USER
 
-* Configuration
+Signup
+/v1/user/signup(.:format) \n
+expected JSON POST request : {"user":{"username":"didi","email":"email@email.com","password":"123456","password_confirmation":"123456"}}
 
-* Database creation
+Signin
+/v1/user/signin(.:format) \n 
+expected JSON POST request : {"auth":{"email":"email@email.com","password":"123456"}}
 
-* Database initialization
+List user
+/v1/user/all(.:format) \n
+GET request is expected with JWT token sent on the header 
 
-* How to run the test suite
 
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...

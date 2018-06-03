@@ -2,8 +2,6 @@ Rails.application.routes.draw do
   
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 # <<<<<<< HEAD
-
-
 namespace :v1 do
 
 	post 'user/signin' => 'user_token#create'
@@ -14,46 +12,10 @@ namespace :v1 do
 	put 'user/edit', to: 'users#update'
 	delete 'user/del', to: 'users#destroy'
 	#post 'paintings/comments', to: 'comments#create'
+	resources :feedbacks
 	resources :paintings do
-		resources :comments
+			resources :comments
+		end
 	end
 end
 # >>>>>>> 67562002140f2e87d144fb21a70f46565ad5d4ab
-	
-
-end
-
-
-# Sign Up
-# {
-# 	"user": {
-# 		"username": "kanda",
-# 		"email": "kanda@gmail.com",
-# 		"password": "123456",
-# 		"password_confirmation": "123456"
-# 	}
-# }
-# 
-# Login
-# {
-# 	"auth":{
-# 		"email": "qwerty@gmail.com",
-# 		"password": "123456"
-# 	}
-# }
-# 
-# Update
-# {
-# 		"id": 1,
-# 		"username": "kanda",
-# 		"bio": "wkwkw land"
-# }
-
-#Tambah image
-# {
-# 	"painting": {
-# 		"title": "Pemandangan Kaliurang",
-# 		"description": "Ini adalah pemandangan Kaliurang yang keren banget",
-# 		"imagepath": "Anu.com/anu.jpg"
-# 	}
-# }
