@@ -28,8 +28,10 @@ before_action :set_painting, only: [ :show, :update, :destroy]
 	end
 
 	def update
-		if @painting = current_user.paintings.update(painting_params)
-			render json: { painting: @painting }
+		#Assign painting ID
+		 @editpainting = Painting.where(id: params[:id])
+		if @painting = @editpainting.update(painting_params)
+			render json: { painting: @painting } 
 		else
 			render json: { painting: @painting.errors }, status: :unprocessable_entity
 		end
@@ -43,7 +45,7 @@ before_action :set_painting, only: [ :show, :update, :destroy]
 private
 
 	def set_painting
-	     @painting = Painting.find(params[:user_id])
+	    @painting = Painting.find(params[:id])
 	end
 	
 	def painting_params

@@ -25,8 +25,8 @@ before_action :set_feedback, only: [ :show, :update, :destroy]
 
   # PATCH/PUT /feedbacks/1
   def update
-    #masih belum 100% karena tiap update malah ke update semua
-    if @feedback = Feedback.update(feedback_params)
+       @feedbackid = Feedback.where(id: params[:id])
+    if @feedback = @feedbackid.update(feedback_params)
        render json: {feedback: @feedback}
     else
        render json: {feedback: @feedback.errors}, status: :unprocessable_entity
