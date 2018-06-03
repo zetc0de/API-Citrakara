@@ -45,6 +45,7 @@ private
 	def set_painting
 	     @painting = Painting.find(params[:user_id])
 	end
+	
 	def painting_params
 		params.permit(:title,:description,:imagepath)
 	end
