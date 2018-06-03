@@ -3,7 +3,15 @@
 This README would normally document whatever steps are necessary to get the
 application up and running.
 
-Things you may want to cover:
+
+Gems :
+knock
+JWT
+CarrierWave
+Cloudinary
+
+
+USER
 
 Signup
 /v1/user/signup(.:format) 
