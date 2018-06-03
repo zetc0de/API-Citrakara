@@ -12,6 +12,9 @@ namespace :v1 do
 	put 'user/edit', to: 'users#update'
 	delete 'user/del', to: 'users#destroy'
 	#post 'paintings/comments', to: 'comments#create'
+
+	get 'user/:id/paintings', to: 'paintings#show_by_userid'
+	
 	resources :feedbacks
 	resources :paintings do
 			resources :comments
