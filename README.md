@@ -2,11 +2,9 @@
 
 Citrakara Backend
 
-Gems :
-knock
-JWT
-CarrierWave
-Cloudinary
+Gems used: 
+Auth is using knock, JWT
+Upload Image is usingCarrierWave, Cloudinary
 
 
 USER
