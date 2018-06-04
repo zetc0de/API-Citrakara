@@ -1,7 +1,7 @@
 class V1::CommentsController < ApplicationController
-before_action :set_comment, only: [:show, :update, :destroy]
+before_action :set_comment, only: [:create, :show, :update, :destroy]
 before_action :set_painting
-before_action :authenticate_user, only: [:create,  :show, :update, :destroy]
+before_action :authenticate_user, only: [:index, :create,  :show, :update, :destroy]
 
     def index
         @comments = Comment.all
