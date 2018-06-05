@@ -10,6 +10,9 @@ gem  'jwt'
 #=======
 #>>>>>>> 67562002140f2e87d144fb21a70f46565ad5d4ab
 
+# ForestAdmin CMS
+gem 'forest_liana'
+
 # Upload image using carrierwave + Cloudinary
 gem 'carrierwave'
 gem 'cloudinary'

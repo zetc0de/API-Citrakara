@@ -36,7 +36,7 @@ before_action :set_user, only: [ :show, :update, :destroy]
 private
 
 	def create_param
-		params.require(:user).permit(:username, :email, :password, :password_confirmation)
+		params.require(:user).permit(:username, :email, :password, :password_confirmation, :artist)
 	end
 
 	def update_param
