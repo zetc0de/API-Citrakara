@@ -4,7 +4,7 @@ before_action :set_painting
 before_action :authenticate_user, only: [:index, :create,  :show, :update, :destroy]
 
     def index
-# Display painting with comments
+# Display painting with comments that associate with it
         @painting = Painting.find(params[:painting_id])
         @comments = @painting.comments
         render json: { comment: @comments }
