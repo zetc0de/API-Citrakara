@@ -4,20 +4,29 @@ before_action :set_feedback, only: [ :show, :update, :destroy]
 
   # GET v1/users/:id/feedbacks
   def index
-    @users = User.find(params[:id])
-    @feedbacks = @users.feedbacks.all
-    if @feedbacks.empty?
-    then 
-      render json: { msg: 'No Feedbacks found'}
+      @users = User.find(params[:id])
+    if @users.id == current_user.id  
+      @feedbacks = @users.feedbacks.all
+      if @feedbacks.empty?
+        then 
+          render json: { msg: 'No Feedbacks found'}
+        else
+          render json: { feedback: @feedbacks }
+      end
     else
-      render json: { feedback: @feedbacks }
+      render json: { msg: 'Unauthorized'}
     end
-  end
+  end  
 
   # GET v1/users/:id/feedbacks/:id
   def show
-   # render json:  {feedback: Feedback.where(user_id: params[:id])}
-   render json: { feedback: @feedback }
+  # render json:  {feedback: Feedback.where(user_id: params[:id])}
+    @feedback = Feedback.find(params[:id])
+    if @feedback.user_id == current_user.id   # Current user is not allowed to see other user feedbacks 
+      render json: { feedback: @feedback }
+    else
+      render json: { msg: 'unauthorized'}
+    end  
   end
 
   # POST /feedbacks

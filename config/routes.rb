@@ -17,7 +17,7 @@ namespace :v1 do
 	get 'user/:id/paintings', to: 'paintings#show_by_userid', as: 'show_paintings_by_user_id'
 
 	get 'user/:id/feedbacks', to: 'feedbacks#index', as: 'index_feedbacks_path'
-	post 'user/:id/feedbacks', to: 'feedbacks#create', as: 'create_feedback_path'
+	post 'user/feedbacks', to: 'feedbacks#create', as: 'create_feedback_path'
 	get 'user/:id/feedbacks/:id', to: 'feedbacks#show', as: 'show_feedback_path'
 	put 'user/:id/feedbacks/:id', to: 'feedbacks#update', as: 'edit_feedback_path'
 	delete 'user/:id/feedbacks/:id', to: 'feedbacks#destroy', as: 'delete_feedback_path'
