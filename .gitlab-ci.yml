@@ -33,6 +33,6 @@ proses deploy production:
   environment: production
   script:
    - gem install dpl
-   - dpl --provider=heroku --app=api-citrakara --api-key=9d7b1007-de22-47a6-90c0-f2a9b41d6418
+   - dpl --provider=heroku --app=api-citrakara --api-key=89eea61e-9854-4f0d-8e91-4d021915ad6b
   only:
    - master

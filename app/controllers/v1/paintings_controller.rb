@@ -2,6 +2,7 @@ class V1::PaintingsController < ApplicationController
 before_action :authenticate_user, only: [ :create, :show, :update, :destroy]
 before_action :set_painting, only: [ :show, :update, :destroy]
 
+# Check cloudinary Config
   	def check_configuration
     	render json: { msg: 'configuration_missing'} if Cloudinary.config.api_key.blank?
   	end
@@ -25,22 +26,30 @@ before_action :set_painting, only: [ :show, :update, :destroy]
 # Create painting /v1/paintings(.:format)
 	def create	
 		check_configuration
-		@painting = current_user.paintings.create(painting_params)
-		if @painting.save
-			render json: { result: ' The Painting is successfully Created' , status: :created }
-		else
-			render json: { result: false, painting: @painting.errors }, status: :unprocessable_entity
-		end
+		if current_user.artist?	
+			@painting = current_user.paintings.create(painting_params)
+			if @painting.save
+				render json: { result: ' The Painting is successfully Created' , status: :created }
+			else
+				render json: { result: false, painting: @painting.errors }, status: :unprocessable_entity
+			end
+		else 
+			render json: { msg: 'You can not upload a painting, you are not an artist'}
+		end	
 	end
 # Edit painting v1/paintings/:id(.:format)  
 	def update
-		#Assign painting ID
-		@editpainting = Painting.where(id: params[:id])
-		if @painting = @editpainting.update(painting_params)
-			render json: { painting: @painting } 
-		else
-			render json: { painting: @painting.errors }, status: :unprocessable_entity
-		end
+		if current_user.artist?			
+			#Assign painting ID
+			@editpainting = Painting.where(id: params[:id])
+			if @painting = @editpainting.update(painting_params)
+				render json: { painting: @painting } 
+			else
+				render json: { painting: @painting.errors }, status: :unprocessable_entity
+			end
+		else 
+			render json: { msg: 'You can not edit a painting, you are not an artist'}
+		end	
 	end
 
 #delete painting helper
