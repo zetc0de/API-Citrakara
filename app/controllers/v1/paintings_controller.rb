@@ -16,13 +16,13 @@ before_action :set_painting, only: [ :show, :update, :destroy]
 		@comments = @painting.comments
 		render json: { painting: @painting, comments: @comments }
 	end
-# Display painting by user id
+# Display painting by user id /v1/user/:id/paintings(.:format) 
 	def show_by_userid
 		@user = User.find(params[:id])
 		@painting = @user.paintings
 		render json: { painting: @painting }
 	end
-
+# Create painting /v1/paintings(.:format)
 	def create	
 		check_configuration
 		@painting = current_user.paintings.create(painting_params)
@@ -32,7 +32,7 @@ before_action :set_painting, only: [ :show, :update, :destroy]
 			render json: { result: false, painting: @painting.errors }, status: :unprocessable_entity
 		end
 	end
-
+# Edit painting v1/paintings/:id(.:format)  
 	def update
 		#Assign painting ID
 		@editpainting = Painting.where(id: params[:id])
@@ -43,9 +43,22 @@ before_action :set_painting, only: [ :show, :update, :destroy]
 		end
 	end
 
+#delete painting helper
+def allow_painting_delete?(painting)
+  return false unless current_user
+  @painting.user_id == current_user.id
+end
+
+# delete painting /v1/paintings/:id(.:format) 
 	def destroy
-		@painting.destroy
-		head 204
+		@painting = Painting.find(params[:id])
+		if allow_painting_delete?(@painting)
+		then	
+			@painting.destroy
+			render json: { msg: 'Painting Deleted'}
+		else
+			render json: { msg: 'Unauthorized'}
+		end
 	end
 
 private

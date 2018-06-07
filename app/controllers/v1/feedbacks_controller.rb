@@ -2,20 +2,27 @@ class V1::FeedbacksController < ApplicationController
 before_action :authenticate_user, only: [ :create, :show, :update, :destroy, :index ]
 before_action :set_feedback, only: [ :show, :update, :destroy]
 
-  # GET /feedbacks
+  # GET v1/users/:id/feedbacks
   def index
-    @feedbacks = Feedback.all
-    render json: { feedback: @feedbacks }
+    @users = User.find(params[:id])
+    @feedbacks = @users.feedbacks.all
+    if @feedbacks.empty?
+    then 
+      render json: { msg: 'No Feedbacks found'}
+    else
+      render json: { feedback: @feedbacks }
+    end
   end
 
-  # GET /feedbacks/1
+  # GET v1/users/:id/feedbacks/:id
   def show
-    render json:  {feedback: Feedback.where(user_id: params[:id])}
+   # render json:  {feedback: Feedback.where(user_id: params[:id])}
+   render json: { feedback: @feedback }
   end
 
   # POST /feedbacks
   def create
-    @feedback = Feedback.new(feedback_params)
+    @feedback = current_user.feedbacks.new(feedback_params)
     if @feedback.save
 			 render json: { result: true , feedback: @feedback, status: :created }
 		else

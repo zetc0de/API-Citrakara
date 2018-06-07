@@ -6,16 +6,20 @@ namespace :v1 do
 
 	post 'user/signin' => 'user_token#create'
 
-	post 'user/signup', to: 'users#create'
-	get 'user/all', to: 'users#index'
-	get 'user', to: 'users#show'
-	put 'user/edit', to: 'users#update'
-	delete 'user/del', to: 'users#destroy'
+	post 'user/signup', to: 'users#create', as: 'signup_path'
+	get 'user/all', to: 'users#index', as: 'user_all_path'
+	get 'user', to: 'users#show', as: 'show_user_path'
+	put 'user/edit', to: 'users#update', as: 'edit_user_path'
+	delete 'user/del', to: 'users#destroy', as: 'delete_user_path'
 	#post 'paintings/comments', to: 'comments#create'
 
-	get 'user/:id/paintings', to: 'paintings#show_by_userid'
-	
-	resources :feedbacks
+	get 'user/:id/paintings', to: 'paintings#show_by_userid', as: 'show_paintings_by_user_id'
+
+	get 'user/:id/feedbacks', to: 'feedbacks#index', as: 'index_feedbacks_path'
+	post 'user/:id/feedbacks', to: 'feedbacks#create', as: 'create_feedback_path'
+	get 'user/:id/feedbacks/:id', to: 'feedbacks#show', as: 'show_feedback_path'
+	put 'user/:id/feedbacks/:id', to: 'feedbacks#update', as: 'edit_feedback_path'
+	delete 'user/:id/feedbacks/:id', to: 'feedbacks#destroy', as: 'delete_feedback_path'
 	resources :paintings do
 			resources :comments
 		end
