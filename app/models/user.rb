@@ -4,6 +4,8 @@ class User < ApplicationRecord
 	has_many :comments
 	has_many :feedbacks
 
+	attr_accessor :current_password
+
 	validates :username, uniqueness: true, length: { in: 1..10 }
 	validates :password, presence: true, allow_nil: true
 	validates :email, uniqueness: true

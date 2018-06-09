@@ -12,7 +12,7 @@ namespace :v1 do
 	get 'user', to: 'users#show', as: 'show_user_path'
 	put 'user/edit', to: 'users#update', as: 'edit_user_path'
 	delete 'user/del', to: 'users#destroy', as: 'delete_user_path'
-	#post 'paintings/comments', to: 'comments#create'
+	put 'user/change_password', to: 'users#change_password', as: 'change_password_path'
 
 	get 'user/:id/paintings', to: 'paintings#show_by_userid', as: 'show_paintings_by_user_id'
 

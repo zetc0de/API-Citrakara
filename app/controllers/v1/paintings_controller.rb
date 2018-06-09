@@ -26,7 +26,7 @@ before_action :set_painting, only: [ :show, :update, :destroy]
 # Create painting /v1/paintings(.:format)
 	def create	
 		check_configuration
-		if current_user.artist?	
+		if current_user.artist?	    # check if current user is artist or not
 			@painting = current_user.paintings.create(painting_params)
 			if @painting.save
 				render json: { result: ' The Painting is successfully Created' , status: :created }
@@ -39,7 +39,7 @@ before_action :set_painting, only: [ :show, :update, :destroy]
 	end
 # Edit painting v1/paintings/:id(.:format)  
 	def update
-		if current_user.artist?			
+		if current_user.artist?		# check if current user is artist or not	
 			#Assign painting ID
 			@editpainting = Painting.where(id: params[:id])
 			if @painting = @editpainting.update(painting_params)
@@ -62,7 +62,6 @@ end
 	def destroy
 		@painting = Painting.find(params[:id])
 		if allow_painting_delete?(@painting)
-		then	
 			@painting.destroy
 			render json: { msg: 'Painting Deleted'}
 		else

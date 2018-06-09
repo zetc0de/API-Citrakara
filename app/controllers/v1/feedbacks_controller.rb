@@ -5,7 +5,7 @@ before_action :set_feedback, only: [ :show, :update, :destroy]
   # GET v1/users/:id/feedbacks
   def index
       @users = User.find(params[:id])
-    if @users.id == current_user.id  
+    if @users.id == current_user.id               # Current user is not allowed to see other user feedbacks 
       @feedbacks = @users.feedbacks.all
       if @feedbacks.empty?
         then 
@@ -22,7 +22,7 @@ before_action :set_feedback, only: [ :show, :update, :destroy]
   def show
   # render json:  {feedback: Feedback.where(user_id: params[:id])}
     @feedback = Feedback.find(params[:id])
-    if @feedback.user_id == current_user.id   # Current user is not allowed to see other user feedbacks 
+    if @feedback.user_id == current_user.id        # Current user is not allowed to see other user feedbacks 
       render json: { feedback: @feedback }
     else
       render json: { msg: 'unauthorized'}

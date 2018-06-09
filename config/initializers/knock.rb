@@ -55,5 +55,5 @@ config.token_secret_signature_key = -> { Rails.application.credentials.read }
   ## Configure the exception to be used when user cannot be found.
   ##
   ## Default:
-  config.not_found_exception_class_name = 'User is not found, please Signup or Login first'
+  #config.not_found_exception_class_name = 'User is not found, please Signup or Login first'
 end
