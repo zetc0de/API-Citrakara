@@ -10,6 +10,7 @@ before_action :set_user, only: [ :show, :update, :destroy, :change_password]
 	def create
 		@user = User.create(create_param)
 		if @user.save
+			UserMailer.welcome_email(@user).deliver_now
 			render json: { result: true, user: @user }, status: :created
 		else
 			render json: { result: false, user: @user.errors }, status: :unprocessable_entity
