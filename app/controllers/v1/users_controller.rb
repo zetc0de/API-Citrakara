@@ -51,7 +51,7 @@ private
 	end
 
 	def update_param
-		params.require(:user).permit(:username, :bio, :telp, :password, :password_confirmation)
+		params.require(:user).permit(:username, :bio, :telp )
 	end
 
 	def set_user
