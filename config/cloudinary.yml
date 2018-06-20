@@ -1,0 +1,9 @@
+development:
+  cloud_name: "citrakara"
+  api_key: "233622223673258"
+  api_secret: "GPvcCFTKk5hyjPDL34MMRtL78BU"
+
+production:
+  cloud_name: "citrakara"
+  api_key: "233622223673258"
+  api_secret: "GPvcCFTKk5hyjPDL34MMRtL78BU"

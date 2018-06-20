@@ -10,10 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_05_29_065301) do
+ActiveRecord::Schema.define(version: 2018_06_20_172409) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "comments", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "painting_id"
+    t.integer "user_id"
+    t.string "content"
+    t.index ["painting_id"], name: "index_comments_on_painting_id"
+  end
 
   create_table "feedbacks", force: :cascade do |t|
     t.string "username"
@@ -39,11 +48,12 @@ ActiveRecord::Schema.define(version: 2018_05_29_065301) do
     t.string "email"
     t.string "password_digest"
     t.boolean "artist"
-    t.boolean "admin"
     t.string "bio"
     t.string "telp"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
   end
 
   add_foreign_key "feedbacks", "users"

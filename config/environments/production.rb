@@ -14,6 +14,27 @@ Rails.application.configure do
   config.consider_all_requests_local       = false
   config.action_controller.perform_caching = true
 
+#CONFIG MAILER
+config.action_mailer.delivery_method = :sendmail
+# Defaults to:
+# config.action_mailer.sendmail_settings = {
+#   location: '/usr/sbin/sendmail',
+#   arguments: '-i'
+# }
+config.action_mailer.perform_deliveries = true
+config.action_mailer.raise_delivery_errors = true
+config.action_mailer.default_options = {from: 'citrakara.id@gmail.com'}  
+
+config.action_mailer.delivery_method = :smtp
+config.action_mailer.smtp_settings = {
+address:              'smtp.gmail.com',
+port:                 587,
+domain:               'citrakara.id',
+user_name:            'citrakara.id@gmail.com',
+password:             'citrakara123',
+authentication:       'plain',
+enable_starttls_auto: true  }
+
   # Ensures that a master key has been made available in either ENV["RAILS_MASTER_KEY"]
   # or in config/master.key. This key is used to decrypt credentials (and other encrypted files).
   # config.require_master_key = true
