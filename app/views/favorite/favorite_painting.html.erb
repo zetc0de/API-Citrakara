@@ -1,4 +1,0 @@
-<% if current_user %>
-  <%=link_to "favorite",   favorite_painting_path(@painting, type: "favorite"), method: :put %>
-  <%=link_to "unfavorite", favorite_painting_path(@painting, type: "unfavorite"), method: :put %>
-<% end %>

@@ -78,11 +78,9 @@ end
     	if type == "favorite"
 			current_user.favorites << @favorite
 			render json: { msg: 'Added to favorites'}
-
 		elsif type == "unfavorite"
 			current_user.favorites.delete(@favorite)
 			render json: { msg: 'Removed from favorites'}
-
 		else
 			# Type missing, nothing happens
 			render json: { msg: 'Nothing happened'}
