@@ -1,6 +1,8 @@
 class User < ApplicationRecord
 	has_secure_password
 	has_many :paintings
+	has_many :favorite_paintings
+	has_many :favorites, through: :favorite_paintings, source: :painting
 	has_many :comments
 	has_many :feedbacks
 
