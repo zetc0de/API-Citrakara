@@ -13,7 +13,8 @@ namespace :v1 do
 	put 'user/edit', to: 'users#update', as: 'edit_user_path'
 	delete 'user/del', to: 'users#destroy', as: 'delete_user_path'
 	put 'user/change_password', to: 'users#change_password', as: 'change_password_path'
-
+	post 'password/forgot', to: 'passwords#forgot', as: 'forgot_password_path'
+	post 'password/reset', to: 'passwords#reset', as: 'reset_password_path'
 	get 'user/:id/paintings', to: 'paintings#show_by_userid', as: 'show_paintings_by_user_id'
 
 	get 'user/:id/feedbacks', to: 'feedbacks#index', as: 'index_feedbacks_path'
@@ -26,4 +27,3 @@ namespace :v1 do
 		end
 	end
 end
-# >>>>>>> 67562002140f2e87d144fb21a70f46565ad5d4ab
