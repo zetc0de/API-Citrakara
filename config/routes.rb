@@ -23,6 +23,7 @@ namespace :v1 do
 	delete 'user/:id/feedbacks/:id', to: 'feedbacks#destroy', as: 'delete_feedback_path'
 	resources :paintings do
 			resources :comments
+			put :favorite, on: :user
 		end
 	end
 end
