@@ -23,15 +23,6 @@ before_action :authenticate_user, only: [:index, :create,  :show, :update, :dest
         end
     end
 
-# Blom ada fitur edit comment 
-#   def update
-#        if @comment = @comment.update(comment_params)
-#            render json: @comment
-#        else 
-#            render json: @comment.errors, status: unprocessable_entity
-#        end
-#    end
-
     def destroy
 		@comment.destroy
         head 204

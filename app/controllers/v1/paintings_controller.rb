@@ -15,18 +15,20 @@ before_action :set_painting, only: [ :show, :update, :destroy]
 	def show
 		@painting = set_painting
 		@comments = @painting.comments
-		render json: { painting: @painting, comments: @comments }
+		# Show Favorite Painting by current user
+		# @favorited = FavoritePainting.find_by(user: current_user, painting: @painting).present?
+		render json: { painting: @painting, comments: @Comments }
 	end
-# Display painting by user id
+# Display painting by user id /v1/user/:id/paintings(.:format) 
 	def show_by_userid
 		@user = User.find(params[:id])
 		@painting = @user.paintings
 		render json: { painting: @painting }
 	end
-
+# Create painting /v1/paintings(.:format)
 	def create	
 		check_configuration
-		if current_user.artist?	
+		if current_user.artist?	    # check if current user is artist or not
 			@painting = current_user.paintings.create(painting_params)
 			if @painting.save
 				render json: { result: ' The Painting is successfully Created' , status: :created }
@@ -37,9 +39,9 @@ before_action :set_painting, only: [ :show, :update, :destroy]
 			render json: { msg: 'You can not upload a painting, you are not an artist'}
 		end	
 	end
-
+# Edit painting v1/paintings/:id(.:format)  
 	def update
-		if current_user.artist?			
+		if current_user.artist?		# check if current user is artist or not	
 			#Assign painting ID
 			@editpainting = Painting.where(id: params[:id])
 			if @painting = @editpainting.update(painting_params)
@@ -52,9 +54,37 @@ before_action :set_painting, only: [ :show, :update, :destroy]
 		end	
 	end
 
+#delete painting helper
+def allow_painting_delete?(painting)
+  return false unless current_user
+  @painting.user_id == current_user.id
+end
+
+# delete painting /v1/paintings/:id(.:format) 
 	def destroy
-		@painting.destroy
-		head 204
+		@painting = Painting.find(params[:id])
+		if allow_painting_delete?(@painting)
+			@painting.destroy
+			render json: { msg: 'Painting Deleted'}
+		else
+			render json: { msg: 'Unauthorized'}
+		end
+	end
+
+# favorite painting /v1/paintings
+	def favorite
+		@favorite = Painting.find(params[:id])
+		type = params[:type]
+    	if type == "favorite"
+			current_user.favorites << @favorite
+			render json: { msg: 'Added to favorites'}
+		elsif type == "unfavorite"
+			current_user.favorites.delete(@favorite)
+			render json: { msg: 'Removed from favorites'}
+		else
+			# Type missing, nothing happens
+			render json: { msg: 'Nothing happened'}
+		end
 	end
 
 private
