@@ -21,9 +21,10 @@ namespace :v1 do
 	get 'user/:id/feedbacks/:id', to: 'feedbacks#show', as: 'show_feedback_path'
 	put 'user/:id/feedbacks/:id', to: 'feedbacks#update', as: 'edit_feedback_path'
 	delete 'user/:id/feedbacks/:id', to: 'feedbacks#destroy', as: 'delete_feedback_path'
+	
 	resources :paintings do
 			resources :comments
-			put :favorite, on: :user
+			put :favorite, on: :member
 		end
 	end
 end
