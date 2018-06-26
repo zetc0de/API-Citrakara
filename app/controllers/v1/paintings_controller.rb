@@ -1,6 +1,6 @@
 class V1::PaintingsController < ApplicationController
 before_action :authenticate_user, only: [ :create, :show, :update, :destroy]
-before_action :set_painting, only: [ :show, :update, :destroy]
+before_action :set_painting, only: [ :show, :update, :destroy, :like] 
 
 # Check cloudinary Config
   	def check_configuration
@@ -86,7 +86,11 @@ end
 			render json: { msg: 'Nothing happened'}
 		end
 	end
-
+# Like painting 
+	def	like
+	 @painting.liked_by current_user	
+	 render json: { msg: 'Liked'  }
+	end
 private
 
 	def set_painting

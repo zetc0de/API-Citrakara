@@ -10,6 +10,9 @@ gem  'jwt'
 #=======
 #>>>>>>> 67562002140f2e87d144fb21a70f46565ad5d4ab
 
+# LikePost
+gem 'acts_as_votable', '~> 0.11.1'
+
 # ForestAdmin CMS
 gem 'forest_liana'
 

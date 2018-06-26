@@ -26,6 +26,9 @@ namespace :v1 do
 	resources :paintings do
 			resources :comments
 			put :favorite, on: :member
+			member do
+							put "like" , to: "paintings#like"
+			end
 		end
 	end
 end
