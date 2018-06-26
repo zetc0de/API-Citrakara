@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_06_26_161946) do
+ActiveRecord::Schema.define(version: 2018_06_26_174529) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -40,10 +40,12 @@ ActiveRecord::Schema.define(version: 2018_06_26_161946) do
     t.index ["user_id"], name: "index_feedbacks_on_user_id"
   end
 
-  create_table "likes", force: :cascade do |t|
-    t.integer "painting_id"
+  create_table "genres", force: :cascade do |t|
+    t.string "genretitle"
+    t.bigint "painting_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["painting_id"], name: "index_genres_on_painting_id"
   end
 
   create_table "paintings", force: :cascade do |t|
@@ -91,5 +93,6 @@ ActiveRecord::Schema.define(version: 2018_06_26_161946) do
   end
 
   add_foreign_key "feedbacks", "users"
+  add_foreign_key "genres", "paintings"
   add_foreign_key "paintings", "users"
 end
