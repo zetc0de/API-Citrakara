@@ -28,6 +28,7 @@ namespace :v1 do
 			put :favorite, on: :member
 			member do
 							put "like" , to: "paintings#like"
+							put "dislike", to: "paintings#dislike"
 			end
 		end
 	end

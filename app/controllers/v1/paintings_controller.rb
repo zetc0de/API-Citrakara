@@ -1,6 +1,6 @@
 class V1::PaintingsController < ApplicationController
 before_action :authenticate_user, only: [ :create, :show, :update, :destroy]
-before_action :set_painting, only: [ :show, :update, :destroy, :like] 
+before_action :set_painting, only: [ :show, :update, :destroy, :like, :dislike ] 
 
 # Check cloudinary Config
   	def check_configuration
@@ -88,8 +88,20 @@ end
 	end
 # Like painting 
 	def	like
-	 @painting.liked_by current_user	
-	 render json: { msg: 'Liked'  }
+	 if @painting.liked_by current_user	
+	 		render json: { like: @painting.get_likes.size  }
+	 else
+			render json: { like: 'not allowed' }
+	end
+	end
+
+# dislike painting
+	def dislike
+		if @painting.disliked_by current_user
+			render json: { like: @painting.get_likes.size }
+		else
+			render json: { like: 'not allowed' }
+		end
 	end
 private
 
