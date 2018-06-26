@@ -9,7 +9,7 @@ before_action :set_painting, only: [ :show, :update, :destroy, :like, :dislike ]
 
 	def index
 		@paintings = Painting.all
-		render json: { article: @paintings}, :include => {:user => {:only => :username }}
+		render json: { paintings: @paintings}, :include => {:user => {:only => :username }}
 	end
 # Display individual Painting With Comments
 	def show
