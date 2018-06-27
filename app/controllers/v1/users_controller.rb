@@ -18,7 +18,7 @@ before_action :set_user, only: [ :show, :update, :destroy, :change_password]
 	end
 
 	def show
-		render json: { result: true, user: { id: @user.id, username: @user.username, email: @user.email } }, status: :ok
+		render json: { result: true, user: { id: @user.id, username: @user.username, email: @user.email, avatar: @user.avatar } }, status: :ok
 	end
 
 	def update	
@@ -47,11 +47,11 @@ before_action :set_user, only: [ :show, :update, :destroy, :change_password]
 private
 
 	def create_param
-		params.require(:user).permit(:username, :email, :password, :password_confirmation, :artist)
+		params.require(:user).permit(:username, :email, :password, :password_confirmation,:gender, :artist)
 	end
 
 	def update_param
-		params.require(:user).permit(:username, :bio, :telp )
+		params.permit(:username, :avatar, :bio, :telp )
 	end
 
 	def set_user
