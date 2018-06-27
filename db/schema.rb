@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_06_26_174529) do
+ActiveRecord::Schema.define(version: 2018_06_27_092825) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -40,6 +40,12 @@ ActiveRecord::Schema.define(version: 2018_06_26_174529) do
     t.index ["user_id"], name: "index_feedbacks_on_user_id"
   end
 
+  create_table "genres", force: :cascade do |t|
+    t.string "genretitle"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "paintings", force: :cascade do |t|
     t.string "title"
     t.string "description"
@@ -54,6 +60,8 @@ ActiveRecord::Schema.define(version: 2018_06_26_174529) do
     t.integer "cached_weighted_score", default: 0
     t.integer "cached_weighted_total", default: 0
     t.float "cached_weighted_average", default: 0.0
+    t.bigint "genre_id"
+    t.index ["genre_id"], name: "index_paintings_on_genre_id"
     t.index ["user_id"], name: "index_paintings_on_user_id"
   end
 
@@ -85,6 +93,6 @@ ActiveRecord::Schema.define(version: 2018_06_26_174529) do
   end
 
   add_foreign_key "feedbacks", "users"
-  add_foreign_key "genres", "paintings"
+  add_foreign_key "paintings", "genres"
   add_foreign_key "paintings", "users"
 end
