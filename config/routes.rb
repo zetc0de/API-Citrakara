@@ -30,7 +30,8 @@ namespace :v1 do
 	delete 'genres/:id/delete', to: 'genres#delete'
 	get 'genres/:id/paintings', to: 'paintings#show_by_genre'
 	
-
+	#view favorites
+	get 'user/:id/favorites', to: 'users#show_favorites'
 
 	resources :paintings do
 			resources :comments

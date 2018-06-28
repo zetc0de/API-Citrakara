@@ -16,8 +16,6 @@ before_action :set_painting, only: [ :show, :update, :destroy, :like, :dislike ]
 	def show
 		@painting = set_painting
 		@comments = @painting.comments
-		# Show Favorite Painting by current user
-		# @favorited = FavoritePainting.find_by(user: current_user, painting: @painting).present?
 		render json: { painting: @painting, comments: @Comments }
 	end
 # Display painting by user id /v1/user/:id/paintings(.:format) 
@@ -93,6 +91,7 @@ end
 			render json: { msg: 'Nothing happened'}
 		end
 	end
+	
 # Like painting 
 	def	like
 	 if @painting.liked_by current_user	
@@ -110,6 +109,7 @@ end
 			render json: { like: 'not allowed' }
 		end
 	end
+
 private
 
 	def set_painting
