@@ -9,7 +9,8 @@ before_action :set_painting, only: [ :show, :update, :destroy, :like, :dislike ]
 
 	def index
 		@paintings = Painting.all
-		render json: { painting: @paintings}
+		render json: { paintings: @paintings}, :include => {:user => {:only => :username }, :genre => {:only => :genretitle }}
+
 	end
 # Display individual Painting With Comments
 	def show
@@ -23,7 +24,13 @@ before_action :set_painting, only: [ :show, :update, :destroy, :like, :dislike ]
 	def show_by_userid
 		@user = User.find(params[:id])
 		@painting = @user.paintings
-		render json: { painting: @painting }
+		render json: { painting: @painting },:include => {:user => {:only => :username }, :genre => {:only => :genretitle }}
+	end
+# Display painting by genre /v1/genre/:id/paintings(.:format)
+	def show_by_genre
+		@genre = Genre.find(params[:id])
+		@painting = @genre.paintings
+		render json: { painting: @painting },:include => {:user => {:only => :username }, :genre => {:only => :genretitle }}
 	end
 # Create painting /v1/paintings(.:format)
 	def create	
@@ -110,7 +117,7 @@ private
 	end
 	
 	def painting_params
-		params.permit(:title,:description,:imagepath)
+		params.permit(:title,:description,:imagepath,:genre_id)
 	end
 
 end

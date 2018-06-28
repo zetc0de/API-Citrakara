@@ -40,8 +40,8 @@ ActiveRecord::Schema.define(version: 2018_06_27_092827) do
     t.index ["user_id"], name: "index_feedbacks_on_user_id"
   end
 
-  create_table "likes", force: :cascade do |t|
-    t.integer "painting_id"
+  create_table "genres", force: :cascade do |t|
+    t.string "genretitle"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -60,6 +60,8 @@ ActiveRecord::Schema.define(version: 2018_06_27_092827) do
     t.integer "cached_weighted_score", default: 0
     t.integer "cached_weighted_total", default: 0
     t.float "cached_weighted_average", default: 0.0
+    t.bigint "genre_id"
+    t.index ["genre_id"], name: "index_paintings_on_genre_id"
     t.index ["user_id"], name: "index_paintings_on_user_id"
   end
 
@@ -93,5 +95,6 @@ ActiveRecord::Schema.define(version: 2018_06_27_092827) do
   end
 
   add_foreign_key "feedbacks", "users"
+  add_foreign_key "paintings", "genres"
   add_foreign_key "paintings", "users"
 end
