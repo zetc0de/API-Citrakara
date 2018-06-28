@@ -1,6 +1,6 @@
 class V1::PaintingsController < ApplicationController
 before_action :authenticate_user, only: [ :create, :show, :update, :destroy]
-before_action :set_painting, only: [ :show, :update, :destroy]
+before_action :set_painting, only: [ :show, :update, :destroy, :like, :dislike ] 
 
 # Check cloudinary Config
   	def check_configuration
@@ -9,21 +9,26 @@ before_action :set_painting, only: [ :show, :update, :destroy]
 
 	def index
 		@paintings = Painting.all
-		render json: { painting: @paintings}
+		render json: { paintings: @paintings}, :include => {:user => {:only => :username }, :genre => {:only => :genretitle }}
+
 	end
 # Display individual Painting With Comments
 	def show
 		@painting = set_painting
 		@comments = @painting.comments
-		# Show Favorite Painting by current user
-		# @favorited = FavoritePainting.find_by(user: current_user, painting: @painting).present?
 		render json: { painting: @painting, comments: @Comments }
 	end
 # Display painting by user id /v1/user/:id/paintings(.:format) 
 	def show_by_userid
 		@user = User.find(params[:id])
 		@painting = @user.paintings
-		render json: { painting: @painting }
+		render json: { painting: @painting },:include => {:user => {:only => :username }, :genre => {:only => :genretitle }}
+	end
+# Display painting by genre /v1/genre/:id/paintings(.:format)
+	def show_by_genre
+		@genre = Genre.find(params[:id])
+		@painting = @genre.paintings
+		render json: { painting: @painting },:include => {:user => {:only => :username }, :genre => {:only => :genretitle }}
 	end
 # Create painting /v1/paintings(.:format)
 	def create	
@@ -86,6 +91,24 @@ end
 			render json: { msg: 'Nothing happened'}
 		end
 	end
+	
+# Like painting 
+	def	like
+	 if @painting.liked_by current_user	
+	 		render json: { like: @painting.get_likes.size  }
+	 else
+			render json: { like: 'not allowed' }
+	end
+	end
+
+# dislike painting
+	def dislike
+		if @painting.disliked_by current_user
+			render json: { like: @painting.get_likes.size }
+		else
+			render json: { like: 'not allowed' }
+		end
+	end
 
 private
 
@@ -94,7 +117,7 @@ private
 	end
 	
 	def painting_params
-		params.permit(:title,:description,:imagepath)
+		params.permit(:title,:description,:imagepath,:genre_id)
 	end
 
 end
