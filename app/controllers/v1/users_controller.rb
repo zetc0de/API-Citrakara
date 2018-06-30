@@ -1,6 +1,6 @@
 class V1::UsersController < ApplicationController
 before_action :authenticate_user, only: [ :show, :update, :destroy, :index, :change_password ]
-before_action :set_user, only: [ :show, :update, :destroy, :change_password] 
+before_action :set_user, only: [ :show, :update, :destroy, :change_password, :show_favorites] 
 
 	def index
 		@users = User.all
@@ -18,7 +18,7 @@ before_action :set_user, only: [ :show, :update, :destroy, :change_password]
 	end
 
 	def show
-		render json: { result: true, user: { id: @user.id, username: @user.username, email: @user.email } }, status: :ok
+		render json: { result: true, user: { id: @user.id, username: @user.username, email: @user.email, avatar: @user.avatar } }, status: :ok
 	end
 
 	def update	
@@ -43,15 +43,21 @@ before_action :set_user, only: [ :show, :update, :destroy, :change_password]
 		end
 	end
 
+# v1/user/:id/favorite Show Favorite Painting by current user 
+	def show_favorites
+		@user = User.find(params[:id])
+		render json: { user: @user }, :include => :favorite_paintings
+	end
+
 
 private
 
 	def create_param
-		params.require(:user).permit(:username, :email, :password, :password_confirmation, :artist)
+		params.require(:user).permit(:username, :email, :password, :password_confirmation,:gender, :artist)
 	end
 
 	def update_param
-		params.require(:user).permit(:username, :bio, :telp )
+		params.permit(:username, :avatar, :bio, :telp )
 	end
 
 	def set_user

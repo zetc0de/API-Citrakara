@@ -1,10 +1,13 @@
 Rails.application.routes.draw do
   
+  
+  get 'notifications/index'
   mount ForestLiana::Engine => '/forest'
+  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+# <<<<<<< HEAD
 namespace :v1 do
-
+	#USERS ROUTES
 	post 'user/signin' => 'user_token#create'
-
 	post 'user/signup', to: 'users#create', as: 'signup_path'
 	get 'user/all', to: 'users#index', as: 'user_all_path'
 	get 'user', to: 'users#show', as: 'show_user_path'
@@ -15,13 +18,34 @@ namespace :v1 do
 	post 'password/reset', to: 'passwords#reset', as: 'reset_password_path'
 	get 'user/:id/paintings', to: 'paintings#show_by_userid', as: 'show_paintings_by_user_id'
 
+	#FEEDBACK ROUTES
 	get 'user/:id/feedbacks', to: 'feedbacks#index', as: 'index_feedbacks_path'
 	post 'user/feedbacks', to: 'feedbacks#create', as: 'create_feedback_path'
 	get 'user/:id/feedbacks/:id', to: 'feedbacks#show', as: 'show_feedback_path'
 	put 'user/:id/feedbacks/:id', to: 'feedbacks#update', as: 'edit_feedback_path'
 	delete 'user/:id/feedbacks/:id', to: 'feedbacks#destroy', as: 'delete_feedback_path'
+
+	#GENRE Routes
+	get 'genres', to: 'genres#index'
+	post 'genres/add', to: 'genres#create'
+	put 'genres/:id/edit', to: 'genres#update'
+	delete 'genres/:id/delete', to: 'genres#delete'
+	get 'genres/:id/paintings', to: 'paintings#show_by_genre'
+	
+	#view favorites
+	get 'user/:id/favorites', to: 'users#show_favorites'
+
+	post 'message', to: 'messages#create'
+	get 'message', to: 'messages#show'
+	get 'notifications', to: 'notifications#index'
+	
 	resources :paintings do
 			resources :comments
+			put :favorite, on: :member
+			member do
+							put "like" , to: "paintings#like"
+							put "dislike", to: "paintings#dislike"
+			end
 		end
 	end
 end

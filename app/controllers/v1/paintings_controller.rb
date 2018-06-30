@@ -1,6 +1,6 @@
 class V1::PaintingsController < ApplicationController
 before_action :authenticate_user, only: [ :create, :show, :update, :destroy]
-before_action :set_painting, only: [ :show, :update, :destroy]
+before_action :set_painting, only: [ :show, :update, :destroy, :like, :dislike ] 
 
 # Check cloudinary Config
   	def check_configuration
@@ -9,19 +9,26 @@ before_action :set_painting, only: [ :show, :update, :destroy]
 
 	def index
 		@paintings = Painting.all
-		render json: { painting: @paintings}
+		render json: { paintings: @paintings}, :include => {:user => {:only => :username }, :genre => {:only => :genretitle }}
+
 	end
 # Display individual Painting With Comments
 	def show
 		@painting = set_painting
 		@comments = @painting.comments
-		render json: { painting: @painting, comments: @comments }
+		render json: { painting: @painting, comments: @Comments }
 	end
 # Display painting by user id /v1/user/:id/paintings(.:format) 
 	def show_by_userid
 		@user = User.find(params[:id])
 		@painting = @user.paintings
-		render json: { painting: @painting }
+		render json: { painting: @painting },:include => {:user => {:only => :username }, :genre => {:only => :genretitle }}
+	end
+# Display painting by genre /v1/genre/:id/paintings(.:format)
+	def show_by_genre
+		@genre = Genre.find(params[:id])
+		@painting = @genre.paintings
+		render json: { painting: @painting },:include => {:user => {:only => :username }, :genre => {:only => :genretitle }}
 	end
 # Create painting /v1/paintings(.:format)
 	def create	
@@ -69,6 +76,41 @@ end
 		end
 	end
 
+# favorite painting /v1/paintings
+	def favorite
+		@favorite = Painting.find(params[:id])
+		type = params[:type]
+    	if type == "favorite"
+			current_user.favorites << @favorite
+			render json: { msg: 'Added to favorites'}
+		elsif type == "unfavorite"
+			current_user.favorites.delete(@favorite)
+			render json: { msg: 'Removed from favorites'}
+		else
+			# Type missing, nothing happens
+			render json: { msg: 'Nothing happened'}
+		end
+	end
+	
+# Like painting 
+	def	like
+	 if @painting.liked_by current_user
+		Notification.create(event: "there's like for you")	
+	 		render json: { like: @painting.get_likes.size  }
+	 else
+			render json: { like: 'not allowed' }
+	end
+	end
+
+# dislike painting
+	def dislike
+		if @painting.disliked_by current_user
+			render json: { like: @painting.get_likes.size }
+		else
+			render json: { like: 'not allowed' }
+		end
+	end
+
 private
 
 	def set_painting
@@ -76,7 +118,7 @@ private
 	end
 	
 	def painting_params
-		params.permit(:title,:description,:imagepath)
+		params.permit(:title,:description,:imagepath,:genre_id)
 	end
 
 end

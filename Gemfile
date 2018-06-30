@@ -10,6 +10,9 @@ gem  'jwt'
 #=======
 #>>>>>>> 67562002140f2e87d144fb21a70f46565ad5d4ab
 
+# LikePost
+gem 'acts_as_votable', '~> 0.11.1'
+
 # ForestAdmin CMS
 gem 'forest_liana'
 
@@ -30,7 +33,7 @@ gem 'puma', '~> 3.11'
 gem 'bootsnap', '>= 1.1.0', require: false
 
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
-# gem 'rack-cors'
+gem 'rack-cors'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
