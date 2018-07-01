@@ -8,7 +8,7 @@ before_action :set_painting, only: [ :show, :update, :destroy, :like, :dislike ]
   	end
 
 	def index
-		@paintings = Painting.all
+		@paintings = Painting.all.order(created_at: :desc)
 		render json: { paintings: @paintings}, :include => {:user => {:only => :username }, :genre => {:only => :genretitle }}
 
 	end
