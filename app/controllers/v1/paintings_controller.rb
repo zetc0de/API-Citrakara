@@ -95,7 +95,10 @@ end
 # Like painting 
 	def	like
 	 if @painting.liked_by current_user	
-	 		render json: { like: @painting.get_likes.size  }
+		userid = current_user.id
+		paintigid = params[:id]
+		@notify = Notification.create(notif: "Notification New Like",user_id: userid,painting_id: paintigid)	 
+		render json: { like: @painting.get_likes.size , notify: @notify }
 	 else
 			render json: { like: 'not allowed' }
 	end
@@ -119,6 +122,7 @@ private
 	def painting_params
 		params.permit(:title,:description,:imagepath,:genre_id)
 	end
+
 
 end
 

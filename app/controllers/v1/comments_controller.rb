@@ -1,5 +1,5 @@
 class V1::CommentsController < ApplicationController
-before_action :set_comment, only: [:create, :show, :update, :destroy]
+before_action :set_comment, only: [ :show, :update, :destroy]
 before_action :set_painting
 before_action :authenticate_user, only: [:index, :create,  :show, :update, :destroy]
 
@@ -15,9 +15,12 @@ before_action :authenticate_user, only: [:index, :create,  :show, :update, :dest
     end
 
     def create
-        @comment = Comment.new(comment_params)
+        @comment = @painting.comments.new(comment_params)
         if @comment.save
-            render json: { result: true, comment: @comment }, status: :created
+            paintingid = @painting.id
+            userid = current_user.id
+            @notify = Notification.create(notif: "Notification New Comment", user_id: userid, painting_id: paintingid)
+            render json: { result: true, comment: @comment, notify: @notify }, status: :created
         else
             render json: { result: false, comment: @comment.errors }, status: :unprocessable_entity
         end
@@ -38,7 +41,7 @@ private
 	end
 
 	def comment_params
-		params.require(:comment).permit(:content,:painting_id,:user_id)
+		params.require(:comment).permit(:content,:user_id )
     end
 
 
