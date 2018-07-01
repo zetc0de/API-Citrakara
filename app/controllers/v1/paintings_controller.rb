@@ -95,7 +95,7 @@ end
 # Like painting 
 	def	like
 	 if @painting.liked_by current_user	
-		userid = @painting.user_id
+		userid = current_user.id
 		paintigid = params[:id]
 		@notify = Notification.create(notif: "Notification New Like",user_id: userid,painting_id: paintigid)	 
 		render json: { like: @painting.get_likes.size , notify: @notify }

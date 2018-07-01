@@ -15,10 +15,10 @@ before_action :authenticate_user, only: [:index, :create,  :show, :update, :dest
     end
 
     def create
-        @comment = Comment.new(comment_params)
+        @comment = @painting.comments.new(comment_params)
         if @comment.save
             paintingid = @painting.id
-            userid = @painting.user_id
+            userid = current_user.id
             @notify = Notification.create(notif: "Notification New Comment", user_id: userid, painting_id: paintingid)
             render json: { result: true, comment: @comment, notify: @notify }, status: :created
         else
@@ -41,7 +41,7 @@ private
 	end
 
 	def comment_params
-		params.require(:comment).permit(:content,:painting_id,:user_id)
+		params.require(:comment).permit(:content,:user_id )
     end
 
 
