@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
   
-  
-  get 'notifications/index'
+
   mount ForestLiana::Engine => '/forest'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 # <<<<<<< HEAD
@@ -35,10 +34,8 @@ namespace :v1 do
 	#view favorites
 	get 'user/:id/favorites', to: 'users#show_favorites'
 
-	post 'message', to: 'messages#create'
-	get 'message', to: 'messages#show'
 	get 'notifications', to: 'notifications#index'
-	
+	get 'user/:id/notifications', to: 'notifications#filter_by_user_id'
 	resources :paintings do
 			resources :comments
 			put :favorite, on: :member

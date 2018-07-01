@@ -17,7 +17,9 @@ before_action :authenticate_user, only: [:index, :create,  :show, :update, :dest
     def create
         @comment = Comment.new(comment_params)
         if @comment.save
-            Notification.create(event: "there's a new comment for you")
+            # = @painting.id
+            #userid = @painting.user_id
+            #@notify = Notification.create(notif: "Notification New Comment", user_id: userid, painting_id: paintingid)
             render json: { result: true, comment: @comment }, status: :created
         else
             render json: { result: false, comment: @comment.errors }, status: :unprocessable_entity

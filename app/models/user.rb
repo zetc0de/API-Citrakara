@@ -6,6 +6,7 @@ class User < ApplicationRecord
 	has_many :favorites, through: :favorite_paintings, source: :painting
 	has_many :comments
 	has_many :feedbacks
+	has_many :notifications
 
 	mount_uploader :avatar, ImagepathUploader
 
