@@ -5,8 +5,8 @@ class V1::NotificationsController < ApplicationController
   end
 
   def filter_by_user_id
-		@user = User.find(params[:id])
-		@notify = @user.notifications.reverse
+	@user = User.find(params[:id])
+	@notify = @user.notifications.reverse
     render json: { Notification: @notify },:include => {:user => {:only => :username }, :painting => {:only => :id }}
   end
 end
