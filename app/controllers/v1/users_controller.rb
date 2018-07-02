@@ -18,7 +18,7 @@ before_action :set_user, only: [ :show, :update, :destroy, :change_password, :sh
 	end
 
 	def show
-		render json: { result: true, user: { id: @user.id, username: @user.username, email: @user.email, avatar: @user.avatar } }, status: :ok
+		render json: { result: true, user: @user }, status: :ok
 	end
 
 	def update	

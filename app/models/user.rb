@@ -10,6 +10,8 @@ class User < ApplicationRecord
 
 	mount_uploader :avatar, ImagepathUploader
 
+	mount_uploader :avatar, ImagepathUploader
+
 	attr_accessor :current_password
 
 	validates :username, uniqueness: true, length: { in: 1..10 }

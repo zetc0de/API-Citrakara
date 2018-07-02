@@ -8,7 +8,7 @@ before_action :set_painting, only: [ :show, :update, :destroy, :like, :dislike ]
   	end
 
 	def index
-		@paintings = Painting.all
+		@paintings = Painting.all.order(created_at: :desc)
 		render json: { paintings: @paintings}, :include => {:user => {:only => :username }, :genre => {:only => :genretitle }}
 
 	end
@@ -97,7 +97,9 @@ end
 	 if @painting.liked_by current_user	
 		userid = @painting.user_id
 		paintigid = params[:id]
-		@notify = Notification.create(notif: "Notification New Like",user_id: userid,painting_id: paintigid)	 
+		action_by = current_user.username
+		action_by_id = current_user.id
+		@notify = Notification.create(notif: "Notification New Like From " +action_by,user_id: userid,painting_id: paintigid, actionby: action_by_id)	 
 		render json: { like: @painting.get_likes.size , notify: @notify }
 	 else
 			render json: { like: 'not allowed' }
