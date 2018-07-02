@@ -5,7 +5,6 @@ before_action :authenticate_user, only: [:index, :create,  :show, :update, :dest
 
     def index
 # Display painting with comments that associate with it
-        @painting = Painting.find(params[:painting_id])
         @comments = @painting.comments
         render json: { comment: @comments }
     end
@@ -15,13 +14,9 @@ before_action :authenticate_user, only: [:index, :create,  :show, :update, :dest
     end
 
     def create
-        @comment = @painting.comments.new(comment_params)
+        @comment = @painting.comments.create(content: params[:content], user_id: current_user.id)
         if @comment.save
-            paintingid = @painting.id
-            userid = @painting.user_id
-            action_by = current_user.username
-            action_by_id = current_user.id
-            @notify = Notification.create(notif: "Notification New Comment From " + action_by, user_id: userid, painting_id: paintingid, actionby: action_by_id)
+            notify_new_comment
             render json: { result: true, comment: @comment, notify: @notify }, status: :created
         else
             render json: { result: false, comment: @comment.errors }, status: :unprocessable_entity
@@ -33,6 +28,16 @@ before_action :authenticate_user, only: [:index, :create,  :show, :update, :dest
         head 204
 	end
 
+def notify_new_comment
+    paintingid = @painting.id
+    userid = @painting.user_id
+    action_by = current_user.username
+    action_by_id = current_user.id
+    @notify = Notification.create(notif: "Notification New Comment From " + action_by, user_id: userid, painting_id: paintingid, actionby: action_by_id)
+end
+
+
+
 private
     def set_painting
         @painting = Painting.find(params[:painting_id])
@@ -41,10 +46,5 @@ private
 	def set_comment
 	    @comment = Comment.find(params[:painting_id])
 	end
-
-	def comment_params
-		params.require(:comment).permit(:content,:user_id )
-    end
-
 
 end
