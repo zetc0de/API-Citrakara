@@ -1,4 +1,5 @@
 class V1::GenresController < ApplicationController
+before_action :authenticate_user, only: [ :create, :show, :update, :destroy, :index ]
 
 def index
 	@genres = Genre.all
@@ -28,11 +29,6 @@ end
 
 
 private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_feedback
-      @genre = Genre.find(params[:id])
-    end
-
     # Only allow a trusted parameter "white list" through.
     def genre_params
       params.require(:genre).permit(:genretitle)

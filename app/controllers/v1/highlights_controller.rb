@@ -11,16 +11,25 @@ end
 def create
 	expired_at = (Time.now + 7.days).to_s
 	@highlight = Highlight.create(painting_id: params[:painting_id], user_id: current_user.id, expire_date: expired_at )
-	if @highlight.save
-		render json: { highlight: @highlight }
+	if check_balance?
+	   @highlight.save 
+	   update_balance
+		render json: { highlight: @highlight, saldo: @saldo }
 	else
-		render json: { msg: @highlight.errors }
+		render json: { msg: 'please check your balance' }
 	end
 
 end
 
+def check_balance?
+	@saldo = current_user.balance.balance_amount
+	@saldo > 49000
+end
 
-
-
+def update_balance
+	@saldo = current_user.balance.balance_amount
+	@current_balance = @saldo - 50000
+	current_user.balance.update(balance_amount: @current_balance)
+end
 
 end
