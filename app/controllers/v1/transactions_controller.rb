@@ -23,8 +23,9 @@ def create
 	if @transaction.save
 		render json: { result: true, msg:' Transaction is created'} , status: :created
 	else
-		render json: { result: false, painting: @ptransaction.errors }, status: :unprocessable_entity
+		render json: { result: false, message: @transaction.errors }, status: :unprocessable_entity
 	end
+
 end
 
 private

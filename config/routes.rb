@@ -44,7 +44,6 @@ namespace :v1 do
 	get 'user/highlights', to: 'highlights#index'
 
 	#BALANCE ROUTE
-	post 'user/balance', to: 'balances#create'
 	get 'user/balance', to: 'balances#index'
 
 

@@ -4,7 +4,7 @@ before_action :authenticate_user, only: [ :create, :show, :update, :destroy, :in
 
 def index
 	@highlights = Highlight.all
-	render json: { highlights: @highlights }
+	render json: { highlights: @highlights },:include => {:painting => {:only => :title }}
 end
 
 #user/highlights
@@ -27,9 +27,15 @@ def check_balance?
 end
 
 def update_balance
-	@saldo = current_user.balance.balance_amount
 	@current_balance = @saldo - 50000
 	current_user.balance.update(balance_amount: @current_balance)
+	@saldo = current_user.balance.balance_amount
 end
+
+def days_left
+	#@created = Highlight.pluck(:expire_date)
+	#@days = distance_of_time_in_words_to_now(@created)
+end
+
 
 end
