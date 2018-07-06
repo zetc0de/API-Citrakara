@@ -8,6 +8,7 @@ class User < ApplicationRecord
 	has_many :feedbacks
 	has_many :notifications
 	has_many :transactions
+	has_many :highlights
 	has_one :balance
 
 	mount_uploader :avatar, ImagepathUploader

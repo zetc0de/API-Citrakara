@@ -16,11 +16,13 @@ def indexall
 	render json: { all_transactions: @transactions }
 end
 
-# Create Transactions user/:id/transactions
+# Create Transactions user/transactions
 def create	
 	check_configuration
 	@transaction = current_user.transactions.create(transaction_params)
+	@user = current_user
 	if @transaction.save
+		#TransactionMailer.new_transaction_email(@user).deliver_now
 		render json: { result: true, msg:' Transaction is created'} , status: :created
 	else
 		render json: { result: false, message: @transaction.errors }, status: :unprocessable_entity

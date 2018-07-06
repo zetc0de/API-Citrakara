@@ -43,6 +43,7 @@ namespace :v1 do
 	post 'user/highlights', to: 'highlights#create'
 	get 'user/highlights', to: 'highlights#index'
 
+
 	#BALANCE ROUTE
 	get 'user/balance', to: 'balances#index'
 

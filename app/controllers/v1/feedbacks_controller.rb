@@ -18,7 +18,7 @@ before_action :set_feedback, only: [ :show, :update, :destroy]
     end
   end  
 
-  # GET v1/users/:id/feedbacks/:id
+  # GET v1/user/:id/feedbacks/:id
   def show
   # render json:  {feedback: Feedback.where(user_id: params[:id])}
     @feedback = Feedback.find(params[:id])
