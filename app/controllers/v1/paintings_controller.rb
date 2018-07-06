@@ -16,7 +16,7 @@ before_action :set_painting, only: [ :show, :update, :destroy, :like, :dislike ]
 	def show
 		@painting = set_painting
 		@comments = @painting.comments
-		render json: { painting: @painting, comments: @Comments }
+		render json: { painting: @painting, comments: @comments }
 	end
 # Display painting by user id /v1/user/:id/paintings(.:format) 
 	def show_by_userid
@@ -95,13 +95,11 @@ end
 # Like painting 
 	def	like
 	 if @painting.liked_by current_user	
-		userid = current_user.id
-		paintigid = params[:id]
-		@notify = Notification.create(notif: "Notification New Like",user_id: userid,painting_id: paintigid)	 
+	 	notify_new_like
 		render json: { like: @painting.get_likes.size , notify: @notify }
-	 else
+		 else
 			render json: { like: 'not allowed' }
-	end
+		end
 	end
 
 # dislike painting
@@ -112,6 +110,16 @@ end
 			render json: { like: 'not allowed' }
 		end
 	end
+
+def notify_new_like
+	userid = @painting.user_id
+	paintigid = params[:id]
+	action_by = current_user.username
+	action_by_id = current_user.id
+	@notify = Notification.create(notif: "Notification New Like From " +action_by,user_id: userid,painting_id: paintigid, actionby: action_by_id)	 
+end
+
+
 
 private
 

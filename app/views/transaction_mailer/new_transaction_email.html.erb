@@ -1,0 +1,9 @@
+
+<h1>New Deposit Receipt</h1>
+  <p>
+    Deposit is accepted, please wait for verification <br>
+    <% @transaction = @user.transactions %>
+       Transaction amount: Rp <%= @transaction.last.amount.to_s %> <br>
+  </p>
+<p>Your deposit will be added to your balance after verified <br> 
+have a great day!</p>

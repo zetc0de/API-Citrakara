@@ -10,10 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_07_01_134338) do
+ActiveRecord::Schema.define(version: 2018_07_02_202333) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "balances", force: :cascade do |t|
+    t.decimal "balance_amount"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_balances_on_user_id"
+  end
 
   create_table "comments", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -46,12 +54,24 @@ ActiveRecord::Schema.define(version: 2018_07_01_134338) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "highlights", force: :cascade do |t|
+    t.datetime "expire_date"
+    t.boolean "expired"
+    t.bigint "user_id"
+    t.bigint "painting_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["painting_id"], name: "index_highlights_on_painting_id"
+    t.index ["user_id"], name: "index_highlights_on_user_id"
+  end
+
   create_table "notifications", force: :cascade do |t|
     t.string "notif"
     t.integer "user_id"
     t.integer "painting_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "actionby"
   end
 
   create_table "paintings", force: :cascade do |t|
@@ -71,6 +91,16 @@ ActiveRecord::Schema.define(version: 2018_07_01_134338) do
     t.bigint "genre_id"
     t.index ["genre_id"], name: "index_paintings_on_genre_id"
     t.index ["user_id"], name: "index_paintings_on_user_id"
+  end
+
+  create_table "transactions", force: :cascade do |t|
+    t.decimal "amount"
+    t.boolean "confirmed", default: false
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "bukti"
+    t.index ["user_id"], name: "index_transactions_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -102,7 +132,11 @@ ActiveRecord::Schema.define(version: 2018_07_01_134338) do
     t.index ["voter_id", "voter_type", "vote_scope"], name: "index_votes_on_voter_id_and_voter_type_and_vote_scope"
   end
 
+  add_foreign_key "balances", "users"
   add_foreign_key "feedbacks", "users"
+  add_foreign_key "highlights", "paintings"
+  add_foreign_key "highlights", "users"
   add_foreign_key "paintings", "genres"
   add_foreign_key "paintings", "users"
+  add_foreign_key "transactions", "users"
 end

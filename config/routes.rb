@@ -34,6 +34,21 @@ namespace :v1 do
 	#view favorites
 	get 'user/:id/favorites', to: 'users#show_favorites'
 
+	#TRANSACTIONS ROUTES
+	post 'user/transactions', to: 'transactions#create'
+	get 'user/transactions', to: 'transactions#index'
+	get 'user/alltransactions', to:'transactions#indexall'
+
+	#Highlight Routes
+	post 'user/highlights', to: 'highlights#create'
+	get 'user/highlights', to: 'highlights#index'
+
+
+	#BALANCE ROUTE
+	get 'user/balance', to: 'balances#index'
+
+
+	#NOTIFICATIONS ROUTES
 	get 'notifications', to: 'notifications#index'
 	get 'user/:id/notifications', to: 'notifications#filter_by_user_id'
 	resources :paintings do
