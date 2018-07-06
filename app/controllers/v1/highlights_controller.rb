@@ -5,7 +5,7 @@ before_action :authenticate_user, only: [ :create, :show, :update, :destroy, :in
 def index
 	@highlights = Highlight.all
 
-	render json: { highlights: @highlights, expires_in: @expire },:include => {:painting => {:only => :title }}
+	render json: { highlights: @highlights },:include => {:painting => {:only => :title }}
 end
 
 #user/highlights

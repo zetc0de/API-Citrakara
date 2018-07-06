@@ -1,8 +1,9 @@
 
-<h1>New Transaction Notification</h1>
+<h1>New Deposit Receipt</h1>
   <p>
-    Transaction is accepted, please wait for verification <br>
-    <% @transaction = @user.transactions.find_by_id(@user.id) %>
-       Transaction amount: <%= @transaction %> <br>
+    Deposit is accepted, please wait for verification <br>
+    <% @transaction = @user.transactions %>
+       Transaction amount: Rp <%= @transaction.last.amount.to_s %> <br>
   </p>
-<p>have a great day!</p>
+<p>Your deposit will be added to your balance after verified <br> 
+have a great day!</p>
