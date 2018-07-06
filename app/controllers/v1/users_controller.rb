@@ -46,7 +46,7 @@ before_action :set_user, only: [ :show, :update, :destroy, :change_password, :sh
 # v1/user/:id/favorite Show Favorite Painting by current user 
 	def show_favorites
 		@user = User.find(params[:id])
-		render json: { user: @user }, :include => :favorite_paintings
+		render json: { user: @user }, :include => { :favorite_paintings  => { :include => { :painting => { :only => :imagepath}}}}
 	end
 
 

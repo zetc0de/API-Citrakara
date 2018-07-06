@@ -16,7 +16,7 @@ before_action :set_painting, only: [ :show, :update, :destroy, :like, :dislike ]
 	def show
 		@painting = set_painting
 		@comments = @painting.comments
-		render json: { painting: @painting, comments: @Comments }
+		render json: { painting: @painting, comments: @comments }
 	end
 # Display painting by user id /v1/user/:id/paintings(.:format) 
 	def show_by_userid
