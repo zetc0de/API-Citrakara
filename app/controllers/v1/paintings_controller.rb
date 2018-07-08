@@ -119,6 +119,10 @@ def notify_new_like
 	@notify = Notification.create(notif: "Notification New Like From " +action_by,user_id: userid,painting_id: paintigid, actionby: action_by_id)	 
 end
 
+def search
+	@result = Painting.search(params[:search]).order(created_at: :desc )
+	render json: { result: @result }, :include => {:user => {:only => :username }, :genre => {:only => :genretitle }}
+end
 
 
 private
