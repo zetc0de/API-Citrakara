@@ -5,8 +5,8 @@ before_action :authenticate_user, only: [:index, :create,  :show, :update, :dest
 
     def index
 # Display painting with comments that associate with it
-        @comments = @painting.comments
-        render json: { comment: @comments }
+        @comments = @painting.comments.order(created_at: :desc)
+        render json: { comment: @comments }, :include => {:user => {:only => :username }}
     end
     
     def show
