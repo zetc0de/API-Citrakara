@@ -8,6 +8,10 @@ class Painting < ApplicationRecord
  mount_uploader :imagepath, ImagepathUploader
  acts_as_votable
 
+def self.search(search)
+  where('title LIKE ?', "%#{search}%")
+end
+
 
 
 end

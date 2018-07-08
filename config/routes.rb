@@ -47,6 +47,9 @@ namespace :v1 do
 	#BALANCE ROUTE
 	get 'user/balance', to: 'balances#index'
 
+	#Search route
+	post 'paintings/search', to: 'paintings#search'
+
 
 	#NOTIFICATIONS ROUTES
 	get 'notifications', to: 'notifications#index'
