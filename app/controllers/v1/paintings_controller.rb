@@ -16,7 +16,7 @@ before_action :set_painting, only: [ :show, :update, :destroy, :like, :dislike ]
 	def show
 		@painting = set_painting
 		@comments = @painting.comments
-		render json: { painting: @painting, comments: @comments }
+		render json: { painting: @painting, comments: @comments },:include => {:user => {:only => :username }}
 	end
 # Display painting by user id /v1/user/:id/paintings(.:format) 
 	def show_by_userid
@@ -123,7 +123,6 @@ def search
 	@result = Painting.search(params[:search]).order(created_at: :desc )
 	render json: { result: @result }, :include => {:user => {:only => :username }, :genre => {:only => :genretitle }}
 end
-
 
 private
 
