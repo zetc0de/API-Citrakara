@@ -8,23 +8,25 @@ rvm install ruby-2.4.1
 gem install bundler --no-rdoc --no-ri
 ```
 ### Prepare Database
-Buat user role:
+Create user role:
 ```bash
-sudo -u postgres psql --command "create role sinaurails with createdb login password 'superr4h4s14';"
+sudo -u postgres psql --command "create role admin with createdb login password 'your_admin_password';"
 ```
-Atur koneksi untuk posgresql:
+Connection setting posgresql:
 ```bash
 sudo vim /etc/postgresql/9.6/main/pg_hba.conf
 ```
-Cari bagian local (baris 90). ubah peer menjadi md5
+Find part _local (line 90)_ and change _peer_ to _md5_
+```bash
 local all all md5
-Kemudian restart service postgresql
+```
+Restart service postgresql
 
 ### Setup Env
 ```bash
 sudo vim /etc/environment
 ```
-Tambahkan dengan baris berikut:
+Add the following lines:
 ```bash
 #PATH="/home/ubuntu/bin:/home/ubuntu/.local/bin:/usr/local/rvm/gems/ruby-2.4.1/bin:/usr/local/rvm/gems/ruby-2.4.1@global/bin:/usr/local/rvm/rubies/ruby-2.4.1/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/usr/local/rvm/bin"
 export CITRAKARA_DATABASE_PASSWORD="your_password"
@@ -68,7 +70,7 @@ rails db:create
 7. Notifications
 8. Comments
 8. Highlight Painting ( monetization )
-9. Transaction ( payment/topup, balance, notifications by email)
+9. Transaction ( payment/topup manual verification, balance manual verification, notifications by email)
 10. CMS
 
 
