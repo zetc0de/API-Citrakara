@@ -3,6 +3,10 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.4.1'
 #<<<<<<< HEAD
+
+# Newrelic gem
+gem 'newrelic_rpm'
+
 # Auth gems
 gem 'bcrypt', '~> 3.1.7'
 gem 'knock'
